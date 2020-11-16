@@ -1,4 +1,6 @@
 <script>
+  import { onMount } from "svelte";
+
   import Template from "./Template.svelte";
 
   import Icon from "./../templates/Icon.svelte";
@@ -7,7 +9,24 @@
   import Toggle from "./../templates/Toggle.svelte";
   import ProgressDots from "./../templates/ProgressDots.svelte";
   import InView from "./../templates/InView.svelte";
+  import Number from "./../templates/Number.svelte";
+  import Scatterplot from "./../templates/Scatterplot.svelte";
+
+  let number = 60;
+  let numberDuration = 500;
+  let numberFormat = ".1f";
+
+  const generateScatterplotData = () =>
+    new Array(100).fill(0).map(_ => [Math.random(), Math.random(), 3]);
+  let scatterplotData = generateScatterplotData();
+
+  const onRegenerateScatterplotData = () => {
+    scatterplotData = generateScatterplotData();
+  };
+  onMount(onRegenerateScatterplotData);
 </script>
+
+<h1>UI Elements</h1>
 
 <Template name="Icon">
   <div slot="description">
@@ -59,6 +78,28 @@
   <ProgressDots numberOfItems="6" activeIndex="1" />
 </Template>
 
+<Template name="Number">
+  <div slot="description">
+    <p>Displays a number with an interpolated animation when changed.</p>
+    <label>
+      <div class="label">value</div>
+      <input bind:value={number} type="number" style="width: 6em" />
+    </label>
+    <label>
+      <div class="label">duration (milliseconds)</div>
+      <input bind:value={numberDuration} type="number" style="width: 6em" />
+    </label>
+    <label>
+      <div class="label">format</div>
+      <input bind:value={numberFormat} style="width: 6em" />
+    </label>
+  </div>
+
+  <Number {number} duration={numberDuration} format={numberFormat} />
+</Template>
+
+<h1>Utilities</h1>
+
 <Template name="InView">
   <div slot="description">
     <p>
@@ -81,6 +122,32 @@
   </InView>
 </Template>
 
-<style>
+<h1>Charts</h1>
 
+<Template name="Scatterplot">
+  <div slot="description">
+    <p>
+      The basics for a scatterplot. This uses svelte a `spring`, which animates
+      the dots on change, but requires a consistent number of items in the
+      `data` array.
+    </p>
+    <button on:click={onRegenerateScatterplotData}>Get new data</button>
+  </div>
+
+  <Scatterplot data={scatterplotData} />
+</Template>
+
+<style>
+  h1 {
+    margin: 2em 0 0;
+    padding-top: 1em;
+    border-top: 1px solid var(--gray);
+  }
+  label {
+    display: flex;
+    justify-content: flex-start;
+  }
+  .label {
+    width: 13em;
+  }
 </style>
