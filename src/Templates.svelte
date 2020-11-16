@@ -11,6 +11,7 @@
   import InView from "./../templates/InView.svelte";
   import Number from "./../templates/Number.svelte";
   import Scatterplot from "./../templates/Scatterplot.svelte";
+  import BriefMessage from "./../templates/BriefMessage.svelte";
 
   let number = 60;
   let numberDuration = 500;
@@ -24,6 +25,10 @@
     scatterplotData = generateScatterplotData();
   };
   onMount(onRegenerateScatterplotData);
+
+  let messageIteration = 0;
+  let messageDuration = 500;
+  let message = "This is the message";
 </script>
 
 <h1>UI Elements</h1>
@@ -96,6 +101,38 @@
   </div>
 
   <Number {number} duration={numberDuration} format={numberFormat} />
+</Template>
+
+<Template name="BriefMessage">
+  <div slot="description">
+    <p>
+      This is a message that will pop up to give quick user feedback, and
+      disappears after a short amount of time.
+    </p>
+    <p>
+      The message shows up whenever the `text` or `iteration` changes. Changing
+      the `iteration` is a good way to make sure the message shows up when
+      needed, even if the `text` doesn't change.
+    </p>
+
+    <label>
+      <div class="label">text</div>
+      <input bind:value={message} style="width: 20em" />
+    </label>
+    <label>
+      <div class="label">duration (milliseconds)</div>
+      <input bind:value={messageDuration} type="number" style="width: 6em" />
+    </label>
+    <button on:click={() => (messageIteration += 1)}>Show message</button>
+  </div>
+
+  <div style="position: relative">
+    The message will show up next to this content.
+    <BriefMessage
+      text={message}
+      iteration={messageIteration}
+      duration={messageDuration} />
+  </div>
 </Template>
 
 <h1>Utilities</h1>
