@@ -134,14 +134,16 @@
     <button on:click={onRegenerateScatterplotData}>Get new data</button>
   </div>
 
-  <Scatterplot data={scatterplotData} />
+  <div style="max-width: 30em">
+    <Scatterplot data={scatterplotData} />
+  </div>
 </Template>
 
 <style>
   h1 {
     margin: 2em 0 0;
     padding-top: 1em;
-    border-top: 1px solid var(--gray);
+    border-top: 1px solid #d5d6dd;
   }
   label {
     display: flex;
