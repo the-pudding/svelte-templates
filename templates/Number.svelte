@@ -1,38 +1,38 @@
 <script>
-  import { format as d3Format, interpolate, timer as d3Timer } from "d3";
+  import { format as d3Format, interpolate, timer as d3Timer } from "d3"
 
-  export let number = null;
-  export let format = ",.2f";
-  export let duration = 300;
+  export let number = null
+  export let format = ",.2f"
+  export let duration = 300
 
-  let displayNumber = 0;
-  $: cachedNumber = 0;
+  let displayNumber = 0
+  $: cachedNumber = 0
   $: formatFunction = d => {
     try {
-      return typeof format == "string" ? d3Format(format)(d) : format(d);
+      return typeof format == "string" ? d3Format(format)(d) : format(d)
     } catch (e) {
-      console.log(e);
-      return "-";
+      console.log(e)
+      return "-"
     }
-  };
+  }
 
   const startInterpolate = () => {
-    const interpolationFunction = interpolate(cachedNumber, number);
+    const interpolationFunction = interpolate(cachedNumber, number)
 
     const timer = d3Timer(timeElapsed => {
-      const t = timeElapsed / duration;
+      const t = timeElapsed / duration
 
-      displayNumber = interpolationFunction(t);
+      displayNumber = interpolationFunction(t)
 
       if (t >= 1) {
-        timer.stop();
-        displayNumber = number;
-        cachedNumber = number;
+        if (timer) timer.stop()
+        displayNumber = number
+        cachedNumber = number
       }
-    });
-  };
+    })
+  }
 
-  $: number, startInterpolate();
+  $: number, startInterpolate()
 </script>
 
 <span class="c">

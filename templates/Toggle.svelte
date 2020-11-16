@@ -1,20 +1,20 @@
 <script>
-  export let options = [];
-  export let value = null;
-  export let onChange = () => {};
+  export let options = []
+  export let value = null
+  export let onChange = () => {}
 
   const onChangeLocal = option => {
-    onChange(option);
-    value = option.id;
-  };
+    onChange(option)
+    value = option.id
+  }
 </script>
 
 <div class="c">
   {#each options as option}
     <button
       class="option"
-      class:selected={option.id == value}
-      on:click={() => onChangeLocal(option)}>
+      class:selected="{option.id == value}"
+      on:click="{() => onChangeLocal(option)}">
       {option.label}
     </button>
   {/each}
@@ -25,12 +25,20 @@
     display: flex;
     align-items: center;
   }
-  button.option {
-    /* flex: 1; */
+  .option:hover {
+    background: #ececf1;
+  }
+  .option.selected,
+  .option.selected:hover {
+    background: var(--accent-color);
+    color: white;
+  }
+
+  /* gravy */
+  .option {
     padding: 0.6em 1em;
     line-height: 1.3em;
     appearance: none;
-    /* background: var(--accent-light); */
     background: none;
     font-weight: 600;
     font-size: 0.9em;
@@ -39,14 +47,6 @@
     border-radius: 0;
     outline: none;
     cursor: pointer;
-  }
-  .option:hover {
-    background: #ececf1;
-  }
-  .option.selected,
-  .option.selected:hover {
-    background: var(--accent-color);
-    color: white;
   }
   .option + .option {
     border-left-width: 0;
