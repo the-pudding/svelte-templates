@@ -6,7 +6,7 @@
   <div class="heading">
     <h2>{name}</h2>
     <a
-      href="https://raw.githubusercontent.com/svelte-templates/blob/master/templates/{name}.svelte">
+      href="https://github.com/the-pudding/svelte-templates/blob/master/templates/{name}.svelte">
       Code
     </a>
   </div>
