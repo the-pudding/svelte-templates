@@ -2,3 +2,4 @@
 /public/build/
 
 .DS_Store
+/__sapper__/
