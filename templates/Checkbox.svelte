@@ -6,31 +6,31 @@
     export let checks;
     export let legend;
 
-    console.log({checks, legend})
-
     export const slugify = (str = "") =>
         str.toLowerCase().replace(/ /g, "-").replace(/\./g, "");
 </script>
 
 
-{#if checks.length == 1}
-    <div class='c'>
-        <!-- hiding default checkbox to style our own -->
-        <input class="sr-only" type="checkbox" id={slugify(checks[0].name)} name={checks[0].name} bind:checked={checks[0].selected}>
-        <label for={slugify(checks[0].name)}>
-            {checks[0].label}
-        </label>
-    </div>
-{:else}
+<!-- hiding default checkbox to style our own -->
+
+
+{#if checks.length > 1}
     <fieldset>
         <legend>{legend}</legend>
-        {#each checks as { name, label, selected}}
-            <input class="sr-only" type="checkbox" id={slugify(name)} {name} bind:checked={selected}>
-            <label for={slugify(name)}>
-                {label}
-            </label>
-        {/each}
+        {#each checks as {name, label, selected}}
+        <input class="sr-only" type="checkbox" id={slugify(name)} name={name} bind:checked={selected}>
+        <label for={slugify(name)}>
+            {label}
+        </label>
+    {/each}
     </fieldset>
+{:else}
+    {#each checks as {name, label, selected}}
+        <input class="sr-only" type="checkbox" id={slugify(name)} name={name} bind:checked={selected}>
+        <label for={slugify(name)}>
+            {label}
+        </label>
+    {/each}
 {/if}
 
 

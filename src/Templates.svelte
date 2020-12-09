@@ -165,9 +165,6 @@
     checks={[{ name: '1', label: 'Another user logs in', selected: false }, { name: '2', label: 'I receive a message', selected: false }, { name: '3', label: 'Someone logs out', selected: true }]}, legend='Notification Preferences' />
 </Template>
 
-<Checkbox
-checks={[{ name: '1', label: 'Another user logs in' }, { name: '2', label: 'I receive a message' }, { name: '3', label: 'Someone logs out' }]}, legend='Notification Preferences' />
-
 <h1>Utilities</h1>
 
 <Template name="InView">
