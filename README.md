@@ -17,6 +17,6 @@ npm install
 npm run dev
 ```
 
-...then add them to `/src/Templates.svelte`, using a `<Template>` component.
+...then add them to `/src/components/Templates.svelte`, using a `<Template>` component.
 
 The website will automatically build & update (on Netlify) when changes are pushed.
