@@ -12,6 +12,7 @@
   import Number from "./../templates/Number.svelte";
   import Scatterplot from "./../templates/Scatterplot.svelte";
   import BriefMessage from "./../templates/BriefMessage.svelte";
+  import Checkbox from "./../templates/Checkbox.svelte"
 
   let number = 60;
   let numberDuration = 500;
@@ -134,6 +135,38 @@
       duration={messageDuration} />
   </div>
 </Template>
+
+<Template name="Checkbox">
+  <div slot="description">
+    <p>This will generate a checkbox (or series of related checkboxes) that can be custom-styled and still remain accessible to screen readers and keyboard navigation.</p>
+    <p>
+      Add a `checks` array with an object for each checkbox. Each object should specify:
+    </p>
+    <ul>
+      <li>
+        <b>name</b>
+        : The name of the checkbox (this will be read out when using screen readers but isn't displayed on screen).
+      </li>
+      <li>
+        <b>label</b>
+        : This will be displayed on screen and read out when using screen readers.
+      </li>
+      <li>
+        <b>selected</b>
+        : Whether or not this box should be checked by default (also, this is bound to the `checked` state of the checkbox and will automatically update when the box is either checked or unchecked)
+      </li>
+    </ul>
+    <p>
+      If you have more than one checkbox, also include a `legend` string that gives context to what the set of checkboxes refer to. 
+    </p>
+  </div>
+
+  <Checkbox
+    checks={[{ name: '1', label: 'Another user logs in', selected: false }, { name: '2', label: 'I receive a message', selected: false }, { name: '3', label: 'Someone logs out', selected: true }]}, legend='Notification Preferences' />
+</Template>
+
+<Checkbox
+checks={[{ name: '1', label: 'Another user logs in' }, { name: '2', label: 'I receive a message' }, { name: '3', label: 'Someone logs out' }]}, legend='Notification Preferences' />
 
 <h1>Utilities</h1>
 
