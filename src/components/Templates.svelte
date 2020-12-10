@@ -13,6 +13,7 @@
   import Scatterplot from "./../../templates/Scatterplot.svelte"
   import BriefMessage from "./../../templates/BriefMessage.svelte"  
   import Checkbox from "./../../templates/Checkbox.svelte"
+  import Radio from "./../../templates/Radio.svelte"
   let number = 60
   let numberDuration = 500
   let numberFormat = ".1f"
@@ -162,6 +163,31 @@
 
   <Checkbox
     checks="{[{ name: '1', label: 'Another user logs in', selected: false }, { name: '2', label: 'I receive a message', selected: false }, { name: '3', label: 'Someone logs out', selected: true }]}", legend='Notification Preferences' />
+</Template>
+
+<Template name="Radio">
+  <div slot="description">
+    <p>This will generate a group of radio buttons that can be custom-styled and still remain accessible to screen readers and keyboard navigation.</p>
+    <p>
+      Add a `data` array with an object for each button. Each object should specify:
+    </p>
+    <ul>
+      <li>
+        <b>name</b>
+        : The name of the checkbox (this will be read out when using screen readers but isn't displayed on screen).
+      </li>
+      <li>
+        <b>label</b>
+        : This will be displayed on screen and read out when using screen readers.
+      </li>
+    </ul>
+    <p>
+      Also include a `legend` string that gives context to what the set of buttons refer to. 
+    </p>
+  </div>
+
+  <Radio
+    data="{[{ name: 'east', label: 'US-East'}, { name: 'central', label: 'US-Central'}, { name: 'west', label: 'US-West' }]}" legend='Select a Region' />
 </Template>
 
 <h1>Utilities</h1>
