@@ -10,6 +10,8 @@
     const [base, gravy] = str.split("/* gravy */")
     return gravy ? base + "</style>" : base
   }
+
+
   $: baseCode = grabRawCode(code)
   $: isRawCodeDifferent = code.length != baseCode.length
 

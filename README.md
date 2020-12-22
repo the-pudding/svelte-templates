@@ -19,6 +19,8 @@ npm run dev
 
 ...then add them to `/src/components/Templates.svelte`, using a `<Template>` component.
 
+Make sure to import each template into `/src/components/templates-code.svelte` to make code capable of being copied with the "Copy code" buttons.
+
 The website will automatically build & update (on Netlify) when changes are pushed.
 
 ## Template guidelines
