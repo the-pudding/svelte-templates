@@ -181,7 +181,7 @@
       still remain accessible to screen readers and keyboard navigation.
     </p>
     <p>
-      Add a `data` array with an object for each button. Each object should
+      Add an `options` array with an object for each button. Each object should
       specify:
     </p>
     <ul>
