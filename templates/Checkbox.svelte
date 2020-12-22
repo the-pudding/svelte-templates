@@ -48,6 +48,7 @@
     }
     label {
         user-select: none;
+        line-height: 1.2em;
     }
 
     .sr-only {
@@ -82,6 +83,7 @@
         border: 1px solid var(--gray);
         border-radius: 0.1em;
         transition: background 0.3s ease-out;
+        top: 0.2em;
     }
 
     input[type='checkbox']:checked + label::before {
@@ -93,7 +95,7 @@
     input[type='checkbox'] + label::after {
         content: '';
         position: absolute;
-        top: 0.25em;
+        top: 0.45em;
         left: calc(1em + 4px);
         border-left: 2px solid white;
         border-bottom: 2px solid white;

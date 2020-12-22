@@ -35,6 +35,7 @@
     }
     label {
         user-select: none;
+        line-height: 1.2em;
     } 
     
     .sr-only {
@@ -69,6 +70,7 @@
         border: 1px solid var(--gray);
         border-radius: 50%;
         transition: background 0.3s ease-out;
+        top: 0.2em;
     }
 
     input[type='radio']:checked + label::before {
@@ -83,7 +85,7 @@
         display: inline-block;
         width: 0.5em;
         height: 0.5em;
-        top: 0.25em;
+        top: 0.45em;
         left: 1.25em;
         background: var(--accent-color);
         border: 1px solid var(--accent-color);

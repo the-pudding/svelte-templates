@@ -193,7 +193,7 @@
 
 <Template name="Switch">
   <div slot="description">
-    <p>Each switch expects a `label` element (to describe what the switch is for) and a `design` element, described in detail below.</p>
+    <p>Each switch expects a <code>label</code> element (to describe what the switch is for) and a <code>design</code> element, described in detail below.</p>
     <p>
      The three design options are:
     </p>
@@ -201,24 +201,21 @@
       <li>
         <b>inner</b>
         : Allows a user to switch something on or off with explicit labelling.
-        <br><br>
-        <Switch label="Enable dark mode" design="inner"/>	
+        <div class='switch'><Switch label="Enable dark mode" design="inner"/>	</div>
       </li>
       <li>
         <b>slider</b>
         : Allows a user to switch something on or off with no displayed labelling. (Make sure your label is very clear for users if using this option)
-        <br><br>
-        <Switch label="Enable dark mode" design="slider"/>
+        <div class='switch'><Switch label="Enable dark mode" design="slider"/></div>
       </li>
       <li>
           <b>multi</b>
-          : Allows a user to choose between two options. Acts as an alternative to radio buttons. Expects an object with two options (`options=(['light', 'dark'])`)
-          <br><br>
-          <Switch label="Choose a theme" design="multi" options={['light', 'dark']}/>
+          : Allows a user to choose between two options. Acts as an alternative to radio buttons. Expects an object with two options (<code>options=(['light', 'dark'])</code>)
+          <div class='switch'><Switch label="Choose a theme" design="multi" options={['light', 'dark']}/></div>
       </li>
     </ul>
 
-    <p><b>Note:</b> The slider and multi options may be styled similarly, but under the hood they operate differently so make sure to use the right one for your use case. The slider option is a button with a switch role, letting users know it can have one of two opposing states (e.g., on/off, pressed/unpressed etc.). The multi option requires users to choose one of two different options and thus uses a standard radio button element.</p>
+    <p><b>Note:</b> The slider and multi options may be styled similarly, but under the hood they operate differently so make sure to use the right one for your use case. The slider option is a button with a <code>role="switch"</code> designation, letting users know it can have one of two opposing states (e.g., on/off, pressed/unpressed etc.). The multi option requires users to choose one of two different options and thus uses a standard radio button element.</p>
   </div>
 </Template>
 
@@ -275,5 +272,8 @@
   }
   .label {
     width: 13em;
+  }
+  .switch {
+    margin: 1em 0;
   }
 </style>

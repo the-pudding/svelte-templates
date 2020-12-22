@@ -1,4 +1,9 @@
 <script>
+    // based on suggestions from:
+    // Inclusive Components by Heydon Pickering https://inclusive-components.design/toggle-button/
+    // On Designing and Building Toggle Switches by Sara Soueidan https://www.sarasoueidan.com/blog/toggle-switch-design/
+    // and this example by Scott O'hara https://codepen.io/scottohara/pen/zLZwNv 
+
     export let id = `switch-${Math.random()}`
     export let label;
     export let design = 'inner label'
@@ -44,7 +49,7 @@
     <fieldset>
     <legend>{label}</legend>
         {#each options as option}
-            <input type="radio" id={option} name="option" value={option}>
+            <input type="radio" id={option} name="option" value={option} bind:group={selected}>
             <label for={option}>
                 {option}
             </label> 
