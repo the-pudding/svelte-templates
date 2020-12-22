@@ -14,6 +14,7 @@
   import BriefMessage from "./../../templates/BriefMessage.svelte"  
   import Checkbox from "./../../templates/Checkbox.svelte"
   import Radio from "./../../templates/Radio.svelte"
+  import Switch from "./../../templates/Switch.svelte"
   let number = 60
   let numberDuration = 500
   let numberFormat = ".1f"
@@ -188,6 +189,37 @@
 
   <Radio
     data="{[{ name: 'east', label: 'US-East'}, { name: 'central', label: 'US-Central'}, { name: 'west', label: 'US-West' }]}" legend='Select a Region' />
+</Template>
+
+<Template name="Switch">
+  <div slot="description">
+    <p>Each switch expects a `label` element (to describe what the switch is for) and a `design` element, described in detail below.</p>
+    <p>
+     The three design options are:
+    </p>
+    <ul>
+      <li>
+        <b>inner</b>
+        : Allows a user to switch something on or off with explicit labelling.
+        <br><br>
+        <Switch label="Enable dark mode" design="inner"/>	
+      </li>
+      <li>
+        <b>slider</b>
+        : Allows a user to switch something on or off with no displayed labelling. (Make sure your label is very clear for users if using this option)
+        <br><br>
+        <Switch label="Enable dark mode" design="slider"/>
+      </li>
+      <li>
+          <b>multi</b>
+          : Allows a user to choose between two options. Acts as an alternative to radio buttons. Expects an object with two options (`options=(['light', 'dark'])`)
+          <br><br>
+          <Switch label="Choose a theme" design="multi" options={['light', 'dark']}/>
+      </li>
+    </ul>
+
+    <p><b>Note:</b> The slider and multi options may be styled similarly, but under the hood they operate differently so make sure to use the right one for your use case. The slider option is a button with a switch role, letting users know it can have one of two opposing states (e.g., on/off, pressed/unpressed etc.). The multi option requires users to choose one of two different options and thus uses a standard radio button element.</p>
+  </div>
 </Template>
 
 <h1>Utilities</h1>
