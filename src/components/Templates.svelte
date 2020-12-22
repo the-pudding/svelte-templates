@@ -1,36 +1,38 @@
 <script>
-  import { onMount } from "svelte"
+  import { onMount } from "svelte";
 
-  import Template from "./Template.svelte"
+  import Template from "./Template.svelte";
 
-  import Icon from "./../../templates/Icon.svelte"
-  import iconPaths from "./../../templates/icon-paths"
-  const icons = Object.keys(iconPaths)
-  import Toggle from "./../../templates/Toggle.svelte"
-  import ProgressDots from "./../../templates/ProgressDots.svelte"
-  import InView from "./../../templates/InView.svelte"
-  import Number from "./../../templates/Number.svelte"
-  import Scatterplot from "./../../templates/Scatterplot.svelte"
-  import BriefMessage from "./../../templates/BriefMessage.svelte"  
-  import Checkbox from "./../../templates/Checkbox.svelte"
-  import Radio from "./../../templates/Radio.svelte"
-  import Switch from "./../../templates/Switch.svelte"
-  let number = 60
-  let numberDuration = 500
-  let numberFormat = ".1f"
+  import Icon from "./../../templates/Icon.svelte";
+  import iconPaths from "./../../templates/icon-paths";
+  const icons = Object.keys(iconPaths);
+  import Toggle from "./../../templates/Toggle.svelte";
+  import ProgressDots from "./../../templates/ProgressDots.svelte";
+  import InView from "./../../templates/InView.svelte";
+  import Number from "./../../templates/Number.svelte";
+  import Scatterplot from "./../../templates/Scatterplot.svelte";
+  import BriefMessage from "./../../templates/BriefMessage.svelte";
+  import Checkbox from "./../../templates/Checkbox.svelte";
+  import Radio from "./../../templates/Radio.svelte";
+  import Switch from "./../../templates/Switch.svelte";
+
+  let number = 60;
+  let numberDuration = 500;
+  let numberFormat = ".1f";
+  let radioValue;
 
   const generateScatterplotData = () =>
-    new Array(100).fill(0).map(_ => [Math.random(), Math.random(), 3])
-  let scatterplotData = generateScatterplotData()
+    new Array(100).fill(0).map((_) => [Math.random(), Math.random(), 3]);
+  let scatterplotData = generateScatterplotData();
 
   const onRegenerateScatterplotData = () => {
-    scatterplotData = generateScatterplotData()
-  }
-  onMount(onRegenerateScatterplotData)
+    scatterplotData = generateScatterplotData();
+  };
+  onMount(onRegenerateScatterplotData);
 
-  let messageIteration = 0
-  let messageDuration = 500
-  let message = "This is the message"
+  let messageIteration = 0;
+  let messageDuration = 500;
+  let message = "This is the message";
 </script>
 
 <h1>UI Elements</h1>
@@ -49,7 +51,7 @@
 
   {#each icons as icon}
     <span style="padding: 0.6em">
-      <Icon name="{icon}" />
+      <Icon name={icon} />
     </span>
   {/each}
 </Template>
@@ -61,25 +63,19 @@
       an `options` array with objects that have:
     </p>
     <ul>
-      <li>
-        <b>id</b>
-        : what gets set as the `value`
-      </li>
-      <li>
-        <b>label</b>
-        : what gets displayed in the toggle
-      </li>
+      <li><b>id</b> : what gets set as the `value`</li>
+      <li><b>label</b> : what gets displayed in the toggle</li>
     </ul>
   </div>
 
   <Toggle
-    value="{1}"
-    options="{[{ id: 1, label: 'One' }, { id: 2, label: 'Two' }, { id: 3, label: 'Three' }]}" />
+    value={1}
+    options={[{ id: 1, label: 'One' }, { id: 2, label: 'Two' }, { id: 3, label: 'Three' }]} />
 </Template>
 
 <Template name="ProgressDots">
   <div slot="description">
-    <p></p>
+    <p />
   </div>
 
   <ProgressDots numberOfItems="6" activeIndex="1" />
@@ -90,19 +86,19 @@
     <p>Displays a number with an interpolated animation when changed.</p>
     <label>
       <div class="label">value</div>
-      <input bind:value="{number}" type="number" style="width: 6em" />
+      <input bind:value={number} type="number" style="width: 6em" />
     </label>
     <label>
       <div class="label">duration (milliseconds)</div>
-      <input bind:value="{numberDuration}" type="number" style="width: 6em" />
+      <input bind:value={numberDuration} type="number" style="width: 6em" />
     </label>
     <label>
       <div class="label">format</div>
-      <input bind:value="{numberFormat}" style="width: 6em" />
+      <input bind:value={numberFormat} style="width: 6em" />
     </label>
   </div>
 
-  <Number {number} duration="{numberDuration}" format="{numberFormat}" />
+  <Number {number} duration={numberDuration} format={numberFormat} />
 </Template>
 
 <Template name="BriefMessage">
@@ -119,103 +115,154 @@
 
     <label>
       <div class="label">text</div>
-      <input bind:value="{message}" style="width: 20em" />
+      <input bind:value={message} style="width: 20em" />
     </label>
     <label>
       <div class="label">duration (milliseconds)</div>
-      <input bind:value="{messageDuration}" type="number" style="width: 6em" />
+      <input bind:value={messageDuration} type="number" style="width: 6em" />
     </label>
-    <button on:click="{() => (messageIteration += 1)}">Show message</button>
+    <button on:click={() => (messageIteration += 1)}>Show message</button>
   </div>
 
   <div style="position: relative">
     The message will show up next to this content.
     <BriefMessage
-      text="{message}"
-      iteration="{messageIteration}"
-      duration="{messageDuration}" />
+      text={message}
+      iteration={messageIteration}
+      duration={messageDuration} />
   </div>
 </Template>
 
 <Template name="Checkbox">
   <div slot="description">
-    <p>This will generate a checkbox (or series of related checkboxes) that can be custom-styled and still remain accessible to screen readers and keyboard navigation.</p>
     <p>
-      Add a `checks` array with an object for each checkbox. Each object should specify:
+      This will generate a checkbox (or series of related checkboxes) that can
+      be custom-styled and still remain accessible to screen readers and
+      keyboard navigation.
+    </p>
+    <p>
+      Add a `checks` array with an object for each checkbox. Each object should
+      specify:
     </p>
     <ul>
       <li>
         <b>name</b>
-        : The name of the checkbox (this will be read out when using screen readers but isn't displayed on screen).
+        : The name of the checkbox (this will be read out when using screen
+        readers but isn't displayed on screen).
       </li>
       <li>
         <b>label</b>
-        : This will be displayed on screen and read out when using screen readers.
+        : This will be displayed on screen and read out when using screen
+        readers.
       </li>
       <li>
         <b>selected</b>
-        : Whether or not this box should be checked by default (also, this is bound to the `checked` state of the checkbox and will automatically update when the box is either checked or unchecked)
+        : Whether or not this box should be checked by default (also, this is
+        bound to the `checked` state of the checkbox and will automatically
+        update when the box is either checked or unchecked)
       </li>
     </ul>
     <p>
-      If you have more than one checkbox, also include a `legend` string that gives context to what the set of checkboxes refer to. 
+      If you have more than one checkbox, also include a `legend` string that
+      gives context to what the set of checkboxes refer to.
     </p>
   </div>
 
   <Checkbox
-    checks="{[{ name: '1', label: 'Another user logs in', selected: false }, { name: '2', label: 'I receive a message', selected: false }, { name: '3', label: 'Someone logs out', selected: true }]}", legend='Notification Preferences' />
+    checks={[{ name: '1', label: 'Another user logs in', selected: false }, { name: '2', label: 'I receive a message', selected: false }, { name: '3', label: 'Someone logs out', selected: true }]}
+    ,
+    legend="Notification Preferences" />
 </Template>
 
 <Template name="Radio">
   <div slot="description">
-    <p>This will generate a group of radio buttons that can be custom-styled and still remain accessible to screen readers and keyboard navigation.</p>
     <p>
-      Add a `data` array with an object for each button. Each object should specify:
+      This will generate a group of radio buttons that can be custom-styled and
+      still remain accessible to screen readers and keyboard navigation.
+    </p>
+    <p>
+      Add a `data` array with an object for each button. Each object should
+      specify:
     </p>
     <ul>
       <li>
         <b>name</b>
-        : The name of the checkbox (this will be read out when using screen readers but isn't displayed on screen).
+        : The name of the checkbox (this will be read out when using screen
+        readers but isn't displayed on screen).
       </li>
       <li>
         <b>label</b>
-        : This will be displayed on screen and read out when using screen readers.
+        : This will be displayed on screen and read out when using screen
+        readers.
       </li>
     </ul>
     <p>
-      Also include a `legend` string that gives context to what the set of buttons refer to. 
+      Also include a `legend` string that gives context to what the set of
+      buttons refer to.
     </p>
   </div>
 
   <Radio
-    data="{[{ name: 'east', label: 'US-East'}, { name: 'central', label: 'US-Central'}, { name: 'west', label: 'US-West' }]}" legend='Select a Region' />
+    bind:value={radioValue}
+    options={[{ name: 'east', label: 'US-East' }, { name: 'central', label: 'US-Central' }, { name: 'west', label: 'US-West' }]}
+    legend="Select a Region" />
+
+  <p>The selected value is <strong>{radioValue}</strong>.</p>
 </Template>
 
 <Template name="Switch">
   <div slot="description">
-    <p>Each switch expects a <code>label</code> element (to describe what the switch is for) and a <code>design</code> element, described in detail below.</p>
     <p>
-     The three design options are:
+      Each switch expects a
+      <code>label</code>
+      element (to describe what the switch is for) and a
+      <code>design</code>
+      element, described in detail below.
     </p>
+    <p>The three design options are:</p>
     <ul>
       <li>
         <b>inner</b>
         : Allows a user to switch something on or off with explicit labelling.
-        <div class='switch'><Switch label="Enable dark mode" design="inner"/>	</div>
+        <div class="switch">
+          <Switch label="Enable dark mode" design="inner" />
+        </div>
       </li>
       <li>
         <b>slider</b>
-        : Allows a user to switch something on or off with no displayed labelling. (Make sure your label is very clear for users if using this option)
-        <div class='switch'><Switch label="Enable dark mode" design="slider"/></div>
+        : Allows a user to switch something on or off with no displayed
+        labelling. (Make sure your label is very clear for users if using this
+        option)
+        <div class="switch">
+          <Switch label="Enable dark mode" design="slider" />
+        </div>
       </li>
       <li>
-          <b>multi</b>
-          : Allows a user to choose between two options. Acts as an alternative to radio buttons. Expects an object with two options (<code>options=(['light', 'dark'])</code>)
-          <div class='switch'><Switch label="Choose a theme" design="multi" options={['light', 'dark']}/></div>
+        <b>multi</b>
+        : Allows a user to choose between two options. Acts as an alternative to
+        radio buttons. Expects an object with two options (<code>options=(['light',
+          'dark'])</code>)
+
+        <div class="switch">
+          <Switch
+            label="Choose a theme"
+            design="multi"
+            options={['light', 'dark']} />
+        </div>
       </li>
     </ul>
 
-    <p><b>Note:</b> The slider and multi options may be styled similarly, but under the hood they operate differently so make sure to use the right one for your use case. The slider option is a button with a <code>role="switch"</code> designation, letting users know it can have one of two opposing states (e.g., on/off, pressed/unpressed etc.). The multi option requires users to choose one of two different options and thus uses a standard radio button element.</p>
+    <p>
+      <b>Note:</b>
+      The slider and multi options may be styled similarly, but under the hood
+      they operate differently so make sure to use the right one for your use
+      case. The slider option is a button with a
+      <code>role="switch"</code>
+      designation, letting users know it can have one of two opposing states
+      (e.g., on/off, pressed/unpressed etc.). The multi option requires users to
+      choose one of two different options and thus uses a standard radio button
+      element.
+    </p>
   </div>
 </Template>
 
@@ -238,7 +285,8 @@
     <div
       style="transform: translate({isInView ? 0 : '-3em'}); transition: all 1s
       ease-out;">
-      Is {isInView ? '' : 'not '}in view
+      Is
+      {isInView ? '' : 'not '}in view
     </div>
   </InView>
 </Template>
@@ -252,11 +300,11 @@
       the dots on change, but requires a consistent number of items in the
       `data` array.
     </p>
-    <button on:click="{onRegenerateScatterplotData}">Get new data</button>
+    <button on:click={onRegenerateScatterplotData}>Get new data</button>
   </div>
 
   <div style="max-width: 30em">
-    <Scatterplot data="{scatterplotData}" />
+    <Scatterplot data={scatterplotData} />
   </div>
 </Template>
 

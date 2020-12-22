@@ -20,3 +20,9 @@ npm run dev
 ...then add them to `/src/components/Templates.svelte`, using a `<Template>` component.
 
 The website will automatically build & update (on Netlify) when changes are pushed.
+
+## Template guidelines
+
+By default, create an unstyled / MVP styled version. For an opinionated styling, put all CSS below the `/* gravy */` comment in your style tag.
+
+Make sure any UI elements either [two-way bind](https://svelte.dev/docs#bind_component_property) or [dispatch an event](https://svelte.dev/docs#createEventDispatcher) so the component can expose values.
