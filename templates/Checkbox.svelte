@@ -5,6 +5,7 @@
 
     export let checks;
     export let legend;
+    export let value = checks.filter(d => d.selected === true).map(d => d.label);
 
     export const slugify = (str = "") =>
         str.toLowerCase().replace(/ /g, "-").replace(/\./g, "");
@@ -18,7 +19,7 @@
     <fieldset>
         <legend>{legend}</legend>
         {#each checks as {name, label, selected}}
-        <input class="sr-only" type="checkbox" id={slugify(name)} name={name} bind:checked={selected}>
+        <input class="sr-only" type="checkbox" id={slugify(name)} name={name} value={label} bind:group={value} bind:checked={selected}>
         <label for={slugify(name)}>
             {label}
         </label>
@@ -26,7 +27,7 @@
     </fieldset>
 {:else}
     {#each checks as {name, label, selected}}
-        <input class="sr-only" type="checkbox" id={slugify(name)} name={name} bind:checked={selected}>
+        <input class="sr-only" type="checkbox" id={slugify(name)} name={name} bind:group={value} bind:checked={selected}>
         <label for={slugify(name)}>
             {label}
         </label>

@@ -19,7 +19,9 @@
   let number = 60;
   let numberDuration = 500;
   let numberFormat = ".1f";
+  let checkValue;
   let radioValue;
+  let switchValue;
 
   const generateScatterplotData = () =>
     new Array(100).fill(0).map((_) => [Math.random(), Math.random(), 3]);
@@ -169,6 +171,7 @@
   </div>
 
   <Checkbox
+    bind:value={checkValue}
     checks={[{ name: '1', label: 'Another user logs in', selected: false }, { name: '2', label: 'I receive a message', selected: false }, { name: '3', label: 'Someone logs out', selected: true }]}
     ,
     legend="Notification Preferences" />
@@ -225,7 +228,9 @@
         <b>inner</b>
         : Allows a user to switch something on or off with explicit labelling.
         <div class="switch">
-          <Switch label="Enable dark mode" design="inner" />
+          <Switch 
+          bind:value={switchValue}
+          label="Enable dark mode" design="inner" />
         </div>
       </li>
       <li>
@@ -234,7 +239,9 @@
         labelling. (Make sure your label is very clear for users if using this
         option)
         <div class="switch">
-          <Switch label="Enable dark mode" design="slider" />
+          <Switch 
+          bind:value={switchValue}
+          label="Enable dark mode" design="slider" />
         </div>
       </li>
       <li>
@@ -245,6 +252,7 @@
 
         <div class="switch">
           <Switch
+            bind:value={switchValue}
             label="Choose a theme"
             design="multi"
             options={['light', 'dark']} />

@@ -10,14 +10,16 @@
     export let options = [];
 
     let checked = true;
-    let selected;
+    export let value = 'on';
 
     function handleClick(event){
         const target = event.target
-        
+
         const state = target.getAttribute('aria-checked')
 
         checked = state === 'true' ? false : true
+
+        value = checked === true ? 'on' : 'off'
     }
 
 </script>
@@ -49,7 +51,7 @@
     <fieldset>
     <legend>{label}</legend>
         {#each options as option}
-            <input type="radio" id={option} name="option" value={option} bind:group={selected}>
+            <input type="radio" id={option} name="option" value={option} bind:group={value}>
             <label for={option}>
                 {option}
             </label> 
