@@ -82,15 +82,7 @@
         height: 1em;
         background: transparent;
         border: 1px solid var(--gray);
-        border-radius: 0.1em;
-        transition: background 0.3s ease-out;
         top: 0.2em;
-    }
-
-    input[type='checkbox']:checked + label::before {
-        background: var(--accent-color);
-        border-radius: 0.1em;
-        transition: background 0.3s ease-in;
     }
 
     input[type='checkbox'] + label::after {
@@ -98,23 +90,20 @@
         position: absolute;
         top: 0.45em;
         left: calc(1em + 4px);
-        border-left: 2px solid white;
-        border-bottom: 2px solid white;
+        border-left: 2px solid var(--accent-color);
+        border-bottom: 2px solid var(--accent-color);
         width: 0.75em;
         height: 0.3em;
         width: 0.5em;
         transform: rotate(-45deg) scale(0);
-        transition: transform 0.2s ease-in;
     }
 
     input[type='checkbox']:checked + label::after {
         transform: rotate(-45deg) scale(1);
-        transition: transform 0.2s ease-in;
     }
 
     input[type='checkbox']:focus + label::before {
         outline: var(--accent-color) solid 1px;
-        box-shadow: 0 0px 8px var(--accent-color);
         border-radius: 0.1em;
     }
 
@@ -125,5 +114,37 @@
     input[type='checkbox']:disabled + label::before {
         background: var(--gray)
     }
+
+    /* gravy */
+
+    
+    input[type='checkbox'] + label::before {
+        border-radius: 0.1em;
+        transition: background 0.3s ease-out;
+    }
+
+    input[type='checkbox']:checked + label::before {
+        background: var(--accent-color);
+        border-radius: 0.1em;
+        transition: background 0.3s ease-in;
+    }
+
+    input[type='checkbox'] + label::after {
+        border-left: 2px solid white;
+        border-bottom: 2px solid white;
+        transition: transform 0.2s ease-in;
+    }
+
+    input[type='checkbox']:checked + label::after {
+        transition: transform 0.2s ease-in;
+    }
+
+    input[type='checkbox']:focus + label::before {
+        outline: var(--accent-color) solid 1px;
+        box-shadow: 0 0px 8px var(--accent-color);
+        border-radius: 0.1em;
+    }
+
+    
 
   </style>

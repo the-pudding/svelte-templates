@@ -5,7 +5,7 @@
 
   export let options;
   export let legend;
-  export let value;
+  export let value = options[0].name;
 
   const slugify = (str = "") =>
     str.toLowerCase().replace(/ /g, "-").replace(/\./g, "");
@@ -63,23 +63,21 @@
   }
 
   input[type="radio"] + label::before {
-    content: "";
-    position: relative;
-    display: inline-block;
-    margin-right: 0.5em;
-    width: 1em;
-    height: 1em;
-    background: transparent;
-    border: 1px solid var(--gray);
-    border-radius: 50%;
-    transition: background 0.3s ease-out;
-    top: 0.2em;
+      content: "";
+      position: relative;
+      display: inline-block;
+      margin-right: 0.5em;
+      width: 1em;
+      height: 1em;
+      background: transparent;
+      border: 1px solid var(--gray);
+      border-radius: 50%;
+      top: 0.2em;
   }
 
   input[type="radio"]:checked + label::before {
     border: 1px solid var(--gray, #ddd);
     border-radius: 50%;
-    transition: background 0.3s ease-in;
   }
 
   input[type="radio"] + label::after {
@@ -94,12 +92,41 @@
     border: 1px solid var(--accent-color);
     border-radius: 50%;
     transform: scale(0);
-    transition: transform 0.2s ease-out;
   }
 
   input[type="radio"]:checked + label::after {
     opacity: 1;
     transform: scale(1);
+  }
+
+  input[type="radio"]:focus + label::before {
+    box-shadow: 0 0 0 1px var(--accent-color);
+    border-radius: 50%;
+  }  
+  
+  input[type="radio"]:disabled + label {
+    color: darken(var(--gray), 10);
+  }
+
+  input[type="radio"]:disabled + label::before {
+    background: var(--gray);
+  } 
+  /* gravy */
+
+
+  input[type="radio"] + label::before {
+      transition: background 0.3s ease-out;
+  }
+
+  input[type="radio"]:checked + label::before {
+    transition: background 0.3s ease-in;
+  }
+
+  input[type="radio"] + label::after {
+    transition: transform 0.2s ease-out;
+  }
+
+  input[type="radio"]:checked + label::after {
     transition: transform 0.2s ease-in;
   }
 
@@ -108,13 +135,6 @@
     border-radius: 50%;
   }
 
-  input[type="radio"]:disabled + label {
-    color: darken(var(--gray), 10);
-  }
 
-  input[type="radio"]:disabled + label::before {
-    background: var(--gray);
-  }
 
-  /* gravy */
 </style>
