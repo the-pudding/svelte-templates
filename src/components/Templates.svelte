@@ -180,7 +180,6 @@
   <Checkbox
     bind:value={checkValue}
     checks={[{ name: '1', label: 'Another user logs in', selected: false }, { name: '2', label: 'I receive a message', selected: false }, { name: '3', label: 'Someone logs out', selected: true }]}
-    ,
     legend="Notification Preferences" />
 
     {#if checkValue && checkValue.length === 0}  
@@ -188,6 +187,25 @@
     {:else}
      <p>The selected values are <strong>{checkValue}</strong>.</p>
     {/if}
+
+    <CollapsibleSection headerText="Example Usage">
+      <pre><code>
+        {` 
+        <script>
+          import Checkbox from './Checkbox.svelte';
+          let checkValue;
+        </script>
+  
+        <Checkbox
+          bind:value={checkValue}
+          checks={[
+            { name: '1', label: 'Another user logs in', selected: false }, 
+            { name: '2', label: 'I receive a message', selected: false }, 
+            { name: '3', label: 'Someone logs out', selected: true }]}
+          legend="Notification Preferences" 
+        />`}
+      </code></pre>
+    </CollapsibleSection>
 
 
 </Template>
@@ -226,6 +244,27 @@
     legend="Select a Region" />
 
   <p>The selected value is <strong>{radioValue}</strong>.</p>
+
+
+  <CollapsibleSection headerText="Example Usage">
+    <pre><code>
+      {` 
+      <script>
+        import Radio from './Radio.svelte';
+        let radioValue;
+      </script>
+
+      <Radio 
+        bind:value={radioValue}
+        options={[
+          {name: 'east', label: 'US-East'},
+          {name: 'central', label: 'US-Central'},
+          {name: 'west', label: 'US-West'}
+        ]}
+        legend="Select a Region"
+      />`}
+    </code></pre>
+  </CollapsibleSection>
 </Template>
 
 <Template name="Switch">
@@ -287,6 +326,23 @@
       element.
     </p>
   </div>
+
+  <CollapsibleSection headerText="Example Usage">
+    <pre><code>
+      {` 
+      <script>
+        import Switch from './Switch.svelte';
+        let switchValue;
+      </script>
+
+      <Switch 
+        bind:value={switchValue}
+        label="Choose a theme"
+        design="multi"
+        options={['light', 'dark']}
+      />`}
+    </code></pre>
+  </CollapsibleSection>
 </Template>
 
 <Template name="CollapsibleSection">
@@ -300,17 +356,19 @@
     <p>Look at you accessibly hiding content.</p>
   </CollapsibleSection>
 
-  <CollapsibleSection headerText="How do I use this?">
-    <h4>JavaScript</h4>
+  <CollapsibleSection headerText="Example Usage">
       <pre><code>
-        import CollapsibleSection from './CollapsibleSection.svelte'
-      </code></pre>
+        {` 
+        <script>
+          import CollapsibleSection from './CollapsibleSection.svelte';
+        </script>
 
-    <h4>HTML</h4>
-      <script>
-      </script>
-      <pre><code>
-        {collapseHTML}
+        <CollapsibleSection headerText = 'How does this work?'>
+          <p>This is a paragraph</p>
+          <p>Here's another one</p>
+          <p>These will be hidden until the section is expanded.</p>
+          <p>You can put any content (including other components) in here.</p>
+        </CollapsibleSection>`}
       </code></pre>
   </CollapsibleSection>
 

@@ -9,6 +9,7 @@ import Toggle from '!!raw-loader!./../../templates/Toggle.svelte'
 import Checkbox from '!!raw-loader!./../../templates/Checkbox.svelte'
 import Radio from '!!raw-loader!./../../templates/Radio.svelte'
 import Switch from '!!raw-loader!./../../templates/Switch.svelte'
+import CollapsibleSections from '!!raw-loader!./../../templates/CollapsibleSections.svelte'
 
 export default {
 	BriefMessage,
@@ -21,5 +22,6 @@ export default {
 	Toggle,
 	Checkbox,
 	Radio, 
-	Switch
+	Switch,
+	CollapsibleSections
 }
