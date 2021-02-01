@@ -15,6 +15,7 @@
   import Checkbox from "./../../templates/Checkbox.svelte";
   import Radio from "./../../templates/Radio.svelte";
   import Switch from "./../../templates/Switch.svelte";
+  import CollapsibleSection from "./../../templates/CollapsibleSection.svelte"
 
   let number = 60;
   let numberDuration = 500;
@@ -35,6 +36,12 @@
   let messageIteration = 0;
   let messageDuration = 500;
   let message = "This is the message";
+
+  let collapseHTML = `
+  <CollapsibleSection headerText = 'How does this work' tag='h3'>
+          <p>This is a paragraph</p>
+          <p>Here's another one</p>
+        </CollapsibleSection>`
 </script>
 
 <h1>UI Elements</h1>
@@ -280,6 +287,33 @@
       element.
     </p>
   </div>
+</Template>
+
+<Template name="CollapsibleSection">
+  <div slot="description">
+    <p>Wrap something in this component to make it visible or collapsed on click.</p>
+    <p>Each collapsible section expects a `headerText` element. Currently, this creates an `h3` header.</p>
+  </div>
+
+  <CollapsibleSection headerText="Make this content visible on click">
+    <p>Oh, so fancy.</p>
+    <p>Look at you accessibly hiding content.</p>
+  </CollapsibleSection>
+
+  <CollapsibleSection headerText="How do I use this?">
+    <h4>JavaScript</h4>
+      <pre><code>
+        import CollapsibleSection from './CollapsibleSection.svelte'
+      </code></pre>
+
+    <h4>HTML</h4>
+      <script>
+      </script>
+      <pre><code>
+        {collapseHTML}
+      </code></pre>
+  </CollapsibleSection>
+
 </Template>
 
 <h1>Utilities</h1>

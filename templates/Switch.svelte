@@ -70,9 +70,8 @@
     }
     [role='switch'][aria-checked='true'] :first-child,
     [role='switch'][aria-checked='false'] :last-child {
-        background: var(--accent-color);
+        display: none;
         color: #fff;
-        border-radius: 0.25em;
     }
 
     .s--inner button span {
@@ -83,8 +82,6 @@
 
     .s--inner button:focus {
         outline: var(--accent-color) solid 1px;
-        box-shadow: 0 0px 8px var(--accent-color);
-        border-radius: 0.1em;
     }
 
     /* Slider Design Option */
@@ -97,7 +94,6 @@
     .s--slider button {
         width: 3em;
         height: 1.6em;
-        border-radius: 1.5em;
         position: relative;
         margin: 0 0 0 0.5em;
         background: var(--gray);
@@ -112,7 +108,6 @@
         background: #fff;
         top: 0.2em;
         right: 1.6em;
-        border-radius: 100%;
         transition: transform 0.3s;
     }
 
@@ -126,8 +121,7 @@
     }
 
     .s--slider button:focus {
-        box-shadow: 0 0px 8px var(--accent-color);
-        border-radius: 1.5em;
+        box-shadow: 0 0px 0px 1px var(--accent-color);
     }
 
     /* Multi Design Option */
@@ -224,5 +218,34 @@
         border-radius: 1.5em;
     }
 
+    /* gravy */ 
+
+    /* Inner Design Option */
+    [role='switch'][aria-checked='true'] :first-child,
+    [role='switch'][aria-checked='false'] :last-child {
+        border-radius: 0.25em;
+        background: var(--accent-color);
+        display: inline-block;
+    }
+
+    .s--inner button:focus {
+        box-shadow: 0 0px 8px var(--accent-color);
+        border-radius: 0.1em;
+    }
+
+    /* Slider Design Option */
+    .s--slider button {
+        border-radius: 1.5em;
+    } 
+    
+    .s--slider button::before {
+        border-radius: 100%;
+    }
+
+    .s--slider button:focus {
+        box-shadow: 0 0px 8px var(--accent-color);
+        border-radius: 1.5em;
+    }
+   
 
 </style>
