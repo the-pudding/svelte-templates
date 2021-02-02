@@ -10,12 +10,13 @@
   import ProgressDots from "./../../templates/ProgressDots.svelte";
   import InView from "./../../templates/InView.svelte";
   import Number from "./../../templates/Number.svelte";
+  import Confetti from "./../../templates/Confetti.svelte";
   import Scatterplot from "./../../templates/Scatterplot.svelte";
   import BriefMessage from "./../../templates/BriefMessage.svelte";
   import Checkbox from "./../../templates/Checkbox.svelte";
   import Radio from "./../../templates/Radio.svelte";
   import Switch from "./../../templates/Switch.svelte";
-  import CollapsibleSection from "./../../templates/CollapsibleSection.svelte"
+  import CollapsibleSection from "./../../templates/CollapsibleSection.svelte";
 
   let number = 60;
   let numberDuration = 500;
@@ -23,9 +24,11 @@
   let checkValue;
   let radioValue;
   let switchValue;
+  let confettiNumberOfElements = 50;
+  let confettiDurationInSeconds = 2;
 
   const generateScatterplotData = () =>
-    new Array(100).fill(0).map((_) => [Math.random(), Math.random(), 3]);
+    new Array(100).fill(0).map(_ => [Math.random(), Math.random(), 3]);
   let scatterplotData = generateScatterplotData();
 
   const onRegenerateScatterplotData = () => {
@@ -41,7 +44,7 @@
   <CollapsibleSection headerText = 'How does this work' tag='h3'>
           <p>This is a paragraph</p>
           <p>Here's another one</p>
-        </CollapsibleSection>`
+        </CollapsibleSection>`;
 </script>
 
 <h1>UI Elements</h1>
@@ -72,8 +75,14 @@
       an `options` array with objects that have:
     </p>
     <ul>
-      <li><b>id</b> : what gets set as the `value`</li>
-      <li><b>label</b> : what gets displayed in the toggle</li>
+      <li>
+        <b>id</b>
+        : what gets set as the `value`
+      </li>
+      <li>
+        <b>label</b>
+        : what gets displayed in the toggle
+      </li>
     </ul>
   </div>
 
@@ -182,31 +191,31 @@
     checks={[{ name: '1', label: 'Another user logs in', selected: false }, { name: '2', label: 'I receive a message', selected: false }, { name: '3', label: 'Someone logs out', selected: true }]}
     legend="Notification Preferences" />
 
-    {#if checkValue && checkValue.length === 0}  
-     <p>None are checked.</p>
-    {:else}
-     <p>The selected values are <strong>{checkValue}</strong>.</p>
-    {/if}
+  {#if checkValue && checkValue.length === 0}
+    <p>None are checked.</p>
+  {:else}
+    <p>
+      The selected values are
+      <strong>{checkValue}</strong>
+      .
+    </p>
+  {/if}
 
-    <CollapsibleSection headerText="Example Usage">
-      <pre><code>
-        {` 
-        <script>
-          import Checkbox from './Checkbox.svelte';
-          let checkValue;
-        </script>
-  
-        <Checkbox
+  <CollapsibleSection headerText="Example Usage">
+    <pre>
+      <code>
+        {`
+        <script ✂prettier:content✂="CiAgICAgICAgICBpbXBvcnQgQ2hlY2tib3ggZnJvbSAnLi9DaGVja2JveC5zdmVsdGUnOwogICAgICAgICAgbGV0IGNoZWNrVmFsdWU7CiAgICAgICAg" ✂prettier:content✂="e30=" ✂prettier:content✂="e30=" ✂prettier:content✂="e30=">{}</script>        <Checkbox
           bind:value={checkValue}
           checks={[
-            { name: '1', label: 'Another user logs in', selected: false }, 
-            { name: '2', label: 'I receive a message', selected: false }, 
+            { name: '1', label: 'Another user logs in', selected: false },
+            { name: '2', label: 'I receive a message', selected: false },
             { name: '3', label: 'Someone logs out', selected: true }]}
-          legend="Notification Preferences" 
+          legend="Notification Preferences"
         />`}
-      </code></pre>
-    </CollapsibleSection>
-
+      </code>
+    </pre>
+  </CollapsibleSection>
 
 </Template>
 
@@ -243,18 +252,17 @@
     options={[{ name: 'east', label: 'US-East' }, { name: 'central', label: 'US-Central' }, { name: 'west', label: 'US-West' }]}
     legend="Select a Region" />
 
-  <p>The selected value is <strong>{radioValue}</strong>.</p>
-
+  <p>
+    The selected value is
+    <strong>{radioValue}</strong>
+    .
+  </p>
 
   <CollapsibleSection headerText="Example Usage">
-    <pre><code>
-      {` 
-      <script>
-        import Radio from './Radio.svelte';
-        let radioValue;
-      </script>
-
-      <Radio 
+    <pre>
+      <code>
+        {`
+      <script ✂prettier:content✂="CiAgICAgICAgaW1wb3J0IFJhZGlvIGZyb20gJy4vUmFkaW8uc3ZlbHRlJzsKICAgICAgICBsZXQgcmFkaW9WYWx1ZTsKICAgICAg" ✂prettier:content✂="e30=" ✂prettier:content✂="e30=" ✂prettier:content✂="e30=">{}</script>      <Radio
         bind:value={radioValue}
         options={[
           {name: 'east', label: 'US-East'},
@@ -263,7 +271,8 @@
         ]}
         legend="Select a Region"
       />`}
-    </code></pre>
+      </code>
+    </pre>
   </CollapsibleSection>
 </Template>
 
@@ -282,9 +291,10 @@
         <b>inner</b>
         : Allows a user to switch something on or off with explicit labelling.
         <div class="switch">
-          <Switch 
-          bind:value={switchValue}
-          label="Enable dark mode" design="inner" />
+          <Switch
+            bind:value={switchValue}
+            label="Enable dark mode"
+            design="inner" />
         </div>
       </li>
       <li>
@@ -293,17 +303,18 @@
         labelling. (Make sure your label is very clear for users if using this
         option)
         <div class="switch">
-          <Switch 
-          bind:value={switchValue}
-          label="Enable dark mode" design="slider" />
+          <Switch
+            bind:value={switchValue}
+            label="Enable dark mode"
+            design="slider" />
         </div>
       </li>
       <li>
         <b>multi</b>
         : Allows a user to choose between two options. Acts as an alternative to
-        radio buttons. Expects an object with two options (<code>options=(['light',
-          'dark'])</code>)
-
+        radio buttons. Expects an object with two options (
+        <code>options=(['light', 'dark'])</code>
+        )
         <div class="switch">
           <Switch
             bind:value={switchValue}
@@ -328,27 +339,29 @@
   </div>
 
   <CollapsibleSection headerText="Example Usage">
-    <pre><code>
-      {` 
-      <script>
-        import Switch from './Switch.svelte';
-        let switchValue;
-      </script>
-
-      <Switch 
+    <pre>
+      <code>
+        {`
+      <script ✂prettier:content✂="CiAgICAgICAgaW1wb3J0IFN3aXRjaCBmcm9tICcuL1N3aXRjaC5zdmVsdGUnOwogICAgICAgIGxldCBzd2l0Y2hWYWx1ZTsKICAgICAg" ✂prettier:content✂="e30=" ✂prettier:content✂="e30=" ✂prettier:content✂="e30=">{}</script>      <Switch
         bind:value={switchValue}
         label="Choose a theme"
         design="multi"
         options={['light', 'dark']}
       />`}
-    </code></pre>
+      </code>
+    </pre>
   </CollapsibleSection>
 </Template>
 
 <Template name="CollapsibleSection">
   <div slot="description">
-    <p>Wrap something in this component to make it visible or collapsed on click.</p>
-    <p>Each collapsible section expects a `headerText` element. Currently, this creates an `h3` header.</p>
+    <p>
+      Wrap something in this component to make it visible or collapsed on click.
+    </p>
+    <p>
+      Each collapsible section expects a `headerText` element. Currently, this
+      creates an `h3` header.
+    </p>
   </div>
 
   <CollapsibleSection headerText="Make this content visible on click">
@@ -357,19 +370,17 @@
   </CollapsibleSection>
 
   <CollapsibleSection headerText="Example Usage">
-      <pre><code>
-        {` 
-        <script>
-          import CollapsibleSection from './CollapsibleSection.svelte';
-        </script>
-
-        <CollapsibleSection headerText = 'How does this work?'>
+    <pre>
+      <code>
+        {`
+        <script ✂prettier:content✂="CiAgICAgICAgICBpbXBvcnQgQ29sbGFwc2libGVTZWN0aW9uIGZyb20gJy4vQ29sbGFwc2libGVTZWN0aW9uLnN2ZWx0ZSc7CiAgICAgICAg" ✂prettier:content✂="e30=" ✂prettier:content✂="e30=" ✂prettier:content✂="e30=">{}</script>        <CollapsibleSection headerText = 'How does this work?'>
           <p>This is a paragraph</p>
           <p>Here's another one</p>
           <p>These will be hidden until the section is expanded.</p>
           <p>You can put any content (including other components) in here.</p>
         </CollapsibleSection>`}
-      </code></pre>
+      </code>
+    </pre>
   </CollapsibleSection>
 
 </Template>
@@ -393,10 +404,44 @@
     <div
       style="transform: translate({isInView ? 0 : '-3em'}); transition: all 1s
       ease-out;">
-      Is
-      {isInView ? '' : 'not '}in view
+      Is {isInView ? '' : 'not '}in view
     </div>
   </InView>
+</Template>
+
+<h1>Decorations</h1>
+
+<Template name="Confetti">
+  <div slot="description">
+    <p>Throw in some festive confetti!</p>
+    <p>
+      The party doesn't stop, so if you want to show it briefly, hide the
+      component after a timeout.
+    </p>
+
+    <label>
+      <div class="label">number of elements</div>
+      <input
+        bind:value={confettiNumberOfElements}
+        type="number"
+        style="width: 6em" />
+    </label>
+    <label>
+      <div class="label">duration (seconds)</div>
+      <input
+        bind:value={confettiDurationInSeconds}
+        type="number"
+        style="width: 6em" />
+    </label>
+  </div>
+
+  <div
+    style=" position: relative; height: 10em; padding-left: 50%; padding-top:
+    4em;">
+    <Confetti
+      numberOfElements={confettiNumberOfElements}
+      durationInSeconds={confettiDurationInSeconds} />
+  </div>
 </Template>
 
 <h1>Charts</h1>

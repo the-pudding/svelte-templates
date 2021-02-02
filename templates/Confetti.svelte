@@ -29,7 +29,7 @@
     `<path d="M -5 5 L 0 -5 L 5 5 Z" />`
   ];
 
-  const allElements = new Array(numberOfElements)
+  $: allElements = new Array(numberOfElements)
     .fill(0)
     .map((_, i) => [pickFrom(elementOptions), pickFrom(colors), Math.random()]);
 </script>
