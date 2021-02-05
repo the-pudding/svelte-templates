@@ -262,7 +262,12 @@
     <pre>
       <code>
         {`
-      <script ✂prettier:content✂="CiAgICAgICAgaW1wb3J0IFJhZGlvIGZyb20gJy4vUmFkaW8uc3ZlbHRlJzsKICAgICAgICBsZXQgcmFkaW9WYWx1ZTsKICAgICAg" ✂prettier:content✂="e30=" ✂prettier:content✂="e30=" ✂prettier:content✂="e30=">{}</script>      <Radio
+      <script>
+        import Radio from './Radio.svelte'
+        let radioValue;
+      </script>
+
+      <Radio
         bind:value={radioValue}
         options={[
           {name: 'east', label: 'US-East'},
