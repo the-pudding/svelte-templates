@@ -8,19 +8,23 @@
   export let value = options[0].name;
 
   const slugify = (str = "") =>
-    str.toLowerCase().replace(/ /g, "-").replace(/\./g, "");
+    str
+      .toLowerCase()
+      .replace(/ /g, "-")
+      .replace(/\./g, "");
+
+  $: list = options.map(option => ({
+    ...option,
+    slug: slugify(option.name),
+    id: `${slugify(option.name)}-input`
+  }));
 </script>
 
 <fieldset>
   <legend>{legend}</legend>
-  {#each options as { name, label }}
-    <input
-      class="sr-only"
-      type="radio"
-      id={slugify(name)}
-      bind:group={value}
-      value={slugify(name)} />
-    <label for={slugify(name)}> {label} </label>
+  {#each list as { slug, id, label }}
+    <input class="sr-only" type="radio" {id} bind:group={value} value={slug} />
+    <label for={id}>{label}</label>
   {/each}
 </fieldset>
 
@@ -63,16 +67,16 @@
   }
 
   input[type="radio"] + label::before {
-      content: "";
-      position: relative;
-      display: inline-block;
-      margin-right: 0.5em;
-      width: 1em;
-      height: 1em;
-      background: transparent;
-      border: 1px solid var(--gray);
-      border-radius: 50%;
-      top: 0.2em;
+    content: "";
+    position: relative;
+    display: inline-block;
+    margin-right: 0.5em;
+    width: 1em;
+    height: 1em;
+    background: transparent;
+    border: 1px solid var(--gray);
+    border-radius: 50%;
+    top: 0.2em;
   }
 
   input[type="radio"]:checked + label::before {
@@ -102,20 +106,19 @@
   input[type="radio"]:focus + label::before {
     box-shadow: 0 0 0 1px var(--accent-color);
     border-radius: 50%;
-  }  
-  
+  }
+
   input[type="radio"]:disabled + label {
     color: darken(var(--gray), 10);
   }
 
   input[type="radio"]:disabled + label::before {
     background: var(--gray);
-  } 
+  }
   /* gravy */
 
-
   input[type="radio"] + label::before {
-      transition: background 0.3s ease-out;
+    transition: background 0.3s ease-out;
   }
 
   input[type="radio"]:checked + label::before {
@@ -134,7 +137,4 @@
     box-shadow: 0 0px 8px var(--accent-color);
     border-radius: 50%;
   }
-
-
-
 </style>
