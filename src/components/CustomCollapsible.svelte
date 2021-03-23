@@ -41,7 +41,7 @@
     width: 100%;
 		border: none;
 		margin: 0;
-		padding: 0.5em;
+		padding: 0.5em 0;
   }
 
   button[aria-expanded="true"] {
