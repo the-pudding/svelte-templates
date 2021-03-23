@@ -2,11 +2,13 @@
     import CustomCollapsible from './CustomCollapsible.svelte';
     import Table from './../../templates/Table.svelte'
     import CodeBlock from './../../templates/CodeBlock.svelte'
+    import CopyButtons from './CopyButtons.svelte'
 
     export let componentLabel;
     export let propNumber;
     export let propDesc;
     export let code;
+    export let name;
 
     let tableHeader = ['Prop', 'Expects', 'Description']
 
@@ -15,8 +17,14 @@
 <section>
     <CustomCollapsible headerText={componentLabel} >
         <div class='container'>
+            <div class='view'>
+                <h3>View Code</h3>
+                <a href=https://github.com/the-pudding/svelte-templates/blob/master/templates/{name}.svelte>on GitHub</a>
+                <slot name='view'></slot>
+            </div>
             <div class='use'>
                 <h3>Use This Component</h3>
+                <CopyButtons {name} />
             </div>
 
             <div class='examples'>
@@ -58,6 +66,9 @@
         margin: 0;
         font-weight: bold;
         font-size: 1.2em;
+    }
+    .view > a {
+        margin-right: 0.5rem;
     }
 
     .container {
