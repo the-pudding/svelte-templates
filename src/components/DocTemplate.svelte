@@ -27,7 +27,7 @@
             <div class='props'>
                 <h3>Props</h3>
                 <p>This component takes <strong>{propNumber}</strong> props:</p>
-                <Table headers={tableHeader} rows={propDesc} rowBorder={true} />
+                <Table headers={tableHeader} rows={propDesc} rowBorder={true} sort={false}/>
             </div>
 
             <div class='bound'>
@@ -41,6 +41,13 @@
                 <h3>Example Use</h3>
                 <CodeBlock language="svelte" {code}/>
             </div>
+
+            <div class='a11y'>
+                <h3>Accessibility</h3>
+                <slot name='a11y'>
+                    This component hasn't been evaluated for accessibility concerns.
+                </slot>
+            </div>
             
         </div>
     </CustomCollapsible>
@@ -52,9 +59,19 @@
         font-weight: bold;
         font-size: 1.2em;
     }
+
     .container {
-        width: 100%;
         padding: 0 1rem;
-        background-color: #F1F9FD;
+    }
+    .container > div {
+        padding-bottom: 2rem;
+    }
+
+    .container > div:first-of-type {
+        padding-top: 2rem;
+    }
+
+    p {
+        margin: 0;
     }
 </style>

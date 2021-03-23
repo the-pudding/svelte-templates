@@ -46,10 +46,6 @@
 
 
 <style>
-	:root {
-		--accent-color: CornflowerBlue;
-		--gray: #ccc;
-	}
 	
 	.group-container{
 			display: flex;

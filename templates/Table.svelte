@@ -137,12 +137,12 @@ th {
 	.rowBorder td {
 		border-bottom: 1px solid #eee
 	}
-	td {
+	/* td {
   text-overflow: ellipsis;
   overflow: hidden;
   white-space: nowrap;
 
-}
+} */
 thead {
   border-bottom: 1px solid var(--border);
 }

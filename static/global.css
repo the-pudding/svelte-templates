@@ -189,3 +189,11 @@ button:not(:disabled):active {
 button:focus {
 	border-color: #666;
 }
+
+h2 {
+	font-family: 'Tiempos Text';
+	font-size: 2.6em;
+	font-weight: bold;
+	margin-bottom: 0;
+	padding: 0 1rem;
+}
