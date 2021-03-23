@@ -7,14 +7,14 @@
 </script>
 
 <div class="collapsible">
-    <h3>
+    <h2>
         <button aria-expanded={expanded} on:click={() => expanded = !expanded}>{headerText}
 <svg viewBox="0 0 20 20" fill="none" >
 <path class="vert" d="M10 1V19" stroke="black" stroke-width="2"/>
 <path d="M1 10L19 10" stroke="black" stroke-width="2"/>
 </svg>
         </button>
-    </h3>
+    </h2>
     
     <div class='contents' hidden={!expanded}>
         <slot></slot>
@@ -26,8 +26,10 @@
     border-bottom: 1px solid var(--gray, #eee);
   }
 	
-	h3 {
+	h2 {
 		margin: 0;
+        font-family: 'National 2 Narrow Web';
+        font-size: 2em;
 	}
 	
   button {

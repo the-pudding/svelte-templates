@@ -3,10 +3,16 @@
     // A11y with Lindsey https://www.a11ywithlindsey.com/blog/create-custom-keyboard-accesible-checkboxes
     // and Inclusive Components by Heydon Pickering https://inclusive-components.design/toggle-button/
 
-    export let checks;
+    export let options;
     export let legend;
-    export let value = checks.filter(d => d.selected === true).map(d => d.label);
-
+		export let userSelected = options
+			.filter(d => d.selected === true)
+			.map(d => d.value);
+		export let fontSize = 16;
+		export let flexDirection = 'column'
+	
+		let uniqueID = Math.floor(Math.random() * 100)
+		
     export const slugify = (str = "") =>
         str.toLowerCase().replace(/ /g, "-").replace(/\./g, "");
 </script>
@@ -14,44 +20,57 @@
 
 <!-- hiding default checkbox to style our own -->
 
+    <div role="group" 
+				 class="group-container"
+				 aria-labelledby={`label-${uniqueID}`}
+				 style="font-size:{fontSize}px; flex-direction:{flexDirection}" 
+				 id={`group-${uniqueID}`}>
+        <div class="legend" 
+						 id={`label-${uniqueID}`}>{legend}
+				</div>
+			
+        {#each options as {value, label, selected}}
+			<div class="check" class:row={flexDirection === 'row'}>
+				    <input class="sr-only" 
+							 type="checkbox" 	
+							 id={`${uniqueID}-${slugify(label)}`} 
+							 value={value} 
+							 bind:group={userSelected}>
+        <label for={`${uniqueID}-${slugify(label)}`}>
+            {label}
+        </label>
+			</div>
 
-{#if checks.length > 1}
-    <fieldset>
-        <legend>{legend}</legend>
-        {#each checks as {name, label, selected}}
-        <input class="sr-only" type="checkbox" id={slugify(name)} name={name} value={label} bind:group={value} bind:checked={selected}>
-        <label for={slugify(name)}>
-            {label}
-        </label>
     {/each}
-    </fieldset>
-{:else}
-    {#each checks as {name, label, selected}}
-        <input class="sr-only" type="checkbox" id={slugify(name)} name={name} bind:group={value} bind:checked={selected}>
-        <label for={slugify(name)}>
-            {label}
-        </label>
-    {/each}
-{/if}
+    </div>	
 
 
 <style>
-    fieldset {
-        max-width: 25%;
-        border-radius: 2px;
-        border: 1px solid var(--gray-darker)
-    }
-
-    legend {
-        margin: 0 1em;
-        padding: 0 1em;
+	:root {
+		--accent-color: CornflowerBlue;
+		--gray: #ccc;
+	}
+	
+	.group-container{
+			display: flex;
+			align-items: baseline;
+	}
+	
+	.legend {
+        margin: 0;
+        padding: 0;
         font-weight: bold;
     }
+	
     label {
         user-select: none;
         line-height: 1.2em;
     }
-
+	
+	.check.row {
+		margin-left: 1em;
+	}
+	
     .sr-only {
         position: absolute;
         clip: rect(1px, 1px, 1px, 1px);
@@ -69,7 +88,6 @@
     input[type='checkbox'] + label {
         display: block;
         position: relative;
-        padding: 0 1em;
         text-align: left;
     }
 
@@ -81,7 +99,7 @@
         width: 1em;
         height: 1em;
         background: transparent;
-        border: 1px solid var(--gray);
+        border: 1px solid var(--gray, #ccc);
         top: 0.2em;
     }
 
@@ -89,12 +107,11 @@
         content: '';
         position: absolute;
         top: 0.45em;
-        left: calc(1em + 4px);
-        border-left: 2px solid var(--accent-color);
-        border-bottom: 2px solid var(--accent-color);
-        width: 0.75em;
-        height: 0.3em;
-        width: 0.5em;
+        left: 0.25em;
+        border-left: 0.15em solid var(--accent-color, #282828);
+        border-bottom: 0.15em solid var(--accent-color, #282828);
+        width: 0.45em;
+        height: 0.24em;
         transform: rotate(-45deg) scale(0);
     }
 
@@ -103,16 +120,16 @@
     }
 
     input[type='checkbox']:focus + label::before {
-        outline: var(--accent-color) solid 1px;
+        outline: var(--accent-color, #282828) solid 1px;
         border-radius: 0.1em;
     }
 
     input[type='checkbox']:disabled + label {
-        color: darken(var(--gray), 10);
+        color: darken(var(--gray, #ccc), 10);
     }
 
     input[type='checkbox']:disabled + label::before {
-        background: var(--gray)
+        background: var(--gray, #ccc)
     }
 
     /* gravy */
@@ -124,14 +141,14 @@
     }
 
     input[type='checkbox']:checked + label::before {
-        background: var(--accent-color);
+        background: var(--accent-color, #282828);
         border-radius: 0.1em;
         transition: background 0.3s ease-in;
     }
 
     input[type='checkbox'] + label::after {
-        border-left: 2px solid white;
-        border-bottom: 2px solid white;
+        border-left: 0.15em solid white;
+        border-bottom: 0.15em solid white;
         transition: transform 0.2s ease-in;
     }
 
@@ -140,11 +157,10 @@
     }
 
     input[type='checkbox']:focus + label::before {
-        outline: var(--accent-color) solid 1px;
-        box-shadow: 0 0px 8px var(--accent-color);
+        outline: var(--accent-color, #282828) solid 1px;
+        box-shadow: 0 0px 0.5em var(--accent-color, #282828);
         border-radius: 0.1em;
     }
 
-    
 
   </style>

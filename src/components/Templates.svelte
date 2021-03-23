@@ -17,6 +17,7 @@
   import Radio from "./../../templates/Radio.svelte";
   import Switch from "./../../templates/Switch.svelte";
   import CollapsibleSection from "./../../templates/CollapsibleSection.svelte";
+  import CodeBlock from './../../templates/CodeBlock.svelte';
 
   let number = 60;
   let numberDuration = 500;
@@ -217,6 +218,9 @@
     </pre>
   </CollapsibleSection>
 
+  <CollapsibleSection headerText="Example Code Block">
+    <CodeBlock language="svelte" codeURL="./../../templates/CollapsibleSection.svelte"/>
+  </CollapsibleSection>
 </Template>
 
 <Template name="Radio">
@@ -372,6 +376,20 @@
   <CollapsibleSection headerText="Make this content visible on click">
     <p>Oh, so fancy.</p>
     <p>Look at you accessibly hiding content.</p>
+  </CollapsibleSection>
+
+  <CollapsibleSection headerText="Example Usage">
+    <pre>
+      <code>
+        {`
+        <script ✂prettier:content✂="CiAgICAgICAgICBpbXBvcnQgQ29sbGFwc2libGVTZWN0aW9uIGZyb20gJy4vQ29sbGFwc2libGVTZWN0aW9uLnN2ZWx0ZSc7CiAgICAgICAg" ✂prettier:content✂="e30=" ✂prettier:content✂="e30=" ✂prettier:content✂="e30=">{}</script>        <CollapsibleSection headerText = 'How does this work?'>
+          <p>This is a paragraph</p>
+          <p>Here's another one</p>
+          <p>These will be hidden until the section is expanded.</p>
+          <p>You can put any content (including other components) in here.</p>
+        </CollapsibleSection>`}
+      </code>
+    </pre>
   </CollapsibleSection>
 
   <CollapsibleSection headerText="Example Usage">
