@@ -4,6 +4,8 @@
     import TableExample from '!!raw-loader!./../../examples/TableExample.svelte'
     import CodeBlock from './../../../templates/CodeBlock.svelte'
     import CodeExample from '!!raw-loader!./../../examples/CodeExample.svelte'
+    import DataDownload from './../../../templates/DataDownload.svelte'
+    import DataDownloadExample from '!!raw-loader!./../../examples/DataDownloadExample.svelte'
 
     let propDescriptionsTable = [
         ['headers', 'array', 'Array of column header strings (as will be presented on the table)'],
@@ -38,6 +40,10 @@
         ['language', 'string', 'Indicator of programming language (e.g., js or svelte)']]
 
     let exampleCode = `let x = 25 + y`
+
+    let propDescriptionsData = [
+        ['data', 'array of objects', 'Flat data to be exported to csv'],
+        ['title', 'string', 'string to be converted into file name']]
 </script>
 
 <h2>Data & Code</h2>
@@ -69,6 +75,24 @@
     <div slot="examples">
         <CodeBlock code={exampleCode} language='js'/>
     </div>
+
+</DocTemplate>
+
+
+<!-- Data Download -->
+
+<DocTemplate componentLabel={'data download'} propNumber='2' 
+    propDesc={propDescriptionsData} 
+    code={DataDownloadExample} name='DataDownload'>
+    <p slot='description'>A component to create a button that, when clicked, downloads a .csv file of data. </p>
+
+    <div slot="examples">
+        <DataDownload data={rawTableData} title='my data' />
+    </div>
+
+    <p slot='a11y'>This component uses a semantic <code>button</code> element to trigger the download to make it as keyboard and screen reader navigable as possible. The button can be accessed via <code>TAB</code>, and selected via <code>SPACE</code> or <code>ENTER</code>.</p>
+
+    <p slot='a11y'>To improve accessibility even further, the data should be exported in a format that is human readable (e.g., a value of <code>8743804</code> could be exported as <code>8.7 million</code>). The raw values could be retained in a second column, if preferred.</p>
 
 </DocTemplate>
 
