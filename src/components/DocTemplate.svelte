@@ -17,6 +17,10 @@
 <section>
     <CustomCollapsible headerText={componentLabel} >
         <div class='container'>
+            <div class='description'>
+                <h3>Component Description</h3>
+                <slot name='description'>What you see is what you get!</slot>
+            </div>
             <div class='view'>
                 <h3>View Code</h3>
                 <a href=https://github.com/the-pudding/svelte-templates/blob/master/templates/{name}.svelte>on GitHub</a>
