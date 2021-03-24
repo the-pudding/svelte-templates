@@ -4,13 +4,17 @@
     // On Designing and Building Toggle Switches by Sara Soueidan https://www.sarasoueidan.com/blog/toggle-switch-design/
     // and this example by Scott O'hara https://codepen.io/scottohara/pen/zLZwNv 
 
-    export let id = `switch-${Math.random()}`
+
     export let label;
     export let design = 'inner label'
     export let options = [];
+		export let fontSize = 16;
+	  export let value = 'on';
 
     let checked = true;
-    export let value = 'on';
+
+
+		const uniqueID = Math.floor(Math.random() * 100)
 
     function handleClick(event){
         const target = event.target
@@ -21,47 +25,58 @@
 
         value = checked === true ? 'on' : 'off'
     }
+	
+	  const slugify = (str = "") =>
+    str.toLowerCase().replace(/ /g, "-").replace(/\./g, "");
 
 </script>
 
 {#if design == 'inner'}
 <div class="s s--inner">
-    <span {id}>{label}</span>
+    <span id={`switch-${uniqueID}`}>{label}</span>
     <button
         role="switch"
         aria-checked={checked}
-        aria-labelledby={id}
+        aria-labelledby={`switch-${uniqueID}`}
         on:click={handleClick}>
             <span>on</span>
             <span>off</span>
     </button>
 </div>
 {:else if design == 'slider'}
-<div class="s s--slider">
-    <span {id}>{label}</span>
+<div class="s s--slider" style="font-size:{fontSize}px">
+    <span id={`switch-${uniqueID}`}>{label}</span>
     <button
         role="switch"
         aria-checked={checked}
-        aria-labelledby={id}
+        aria-labelledby={`switch-${uniqueID}`}
         on:click={handleClick}>
     </button>
 </div>
 {:else}
 <div class="s s--multi">
-    <fieldset>
-    <legend>{label}</legend>
+    <div role='radiogroup'
+				 class="group-container"
+				 aria-labelledby={`label-${uniqueID}`}
+				 style="font-size:{fontSize}px" 
+				 id={`group-${uniqueID}`}>
+    <div class='legend' id={`label-${uniqueID}`}>{label}</div>
         {#each options as option}
-            <input type="radio" id={option} name="option" value={option} bind:group={value}>
-            <label for={option}>
+            <input type="radio" id={`${option}-${uniqueID}`} value={option} bind:group={value}>
+            <label for={`${option}-${uniqueID}`}>
                 {option}
             </label> 
         {/each}
-    </fieldset>
+    </div>
 </div>
 
 {/if}
 
 <style>
+			:root {
+		--accent-color: CornflowerBlue;
+		--gray: #ccc;
+	}
     /* Inner Design Option */
     .s--inner button {
         padding: 0.5em;
@@ -103,11 +118,11 @@
     .s--slider button::before {
         content: '';
         position: absolute;
-        width: 1.25em;
-        height: 1.25em;
+        width: 1.3em;
+        height: 1.3em;
         background: #fff;
-        top: 0.2em;
-        right: 1.6em;
+        top: 0.13em;
+        right: 1.5em;
         transition: transform 0.3s;
     }
 
@@ -116,7 +131,7 @@
     }
 
     .s--slider button[aria-checked='true']::before{
-        transform: translateX(1.4em);
+        transform: translateX(1.3em);
         transition: transform 0.3s;
     }
 
@@ -129,7 +144,7 @@
     /* Based on suggestions from Sara Soueidan https://www.sarasoueidan.com/blog/toggle-switch-design/
     and this example from Scott O'hara https://codepen.io/scottohara/pen/zLZwNv */
 
-    .s--multi fieldset {
+    .s--multi .group-container {
         border: none;
         padding: 0;
         white-space: nowrap;
@@ -184,10 +199,10 @@
         border-radius: 100%;
         z-index: 2;
         position: absolute;
-        width: 1.25em;
-        height: 1.25em;
+        width: 1.2em;
+        height: 1.2em;
         background: #fff;
-        top: 0.175em;
+        top: 0.2em;
         right: 1.2em;
         transition: transform 0.3s;
     }
