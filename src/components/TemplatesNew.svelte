@@ -2,6 +2,7 @@
     import UI from './sections/UI.svelte'
     import PaginationUtil from './sections/PaginationUtil.svelte'
     import PageStructure from './sections/PageStructure.svelte'
+    import DataCode from './sections/DataCode.svelte'
    
 </script>
 
@@ -10,6 +11,7 @@
    <UI /> 
    <PaginationUtil />
    <PageStructure />
+   <DataCode />
 </div>
 
 <style>
