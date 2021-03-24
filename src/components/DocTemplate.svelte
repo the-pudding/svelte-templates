@@ -29,6 +29,7 @@
             <div class='use'>
                 <h3>Use This Component</h3>
                 <CopyButtons {name} />
+                <slot name='other'></slot>
             </div>
 
             <div class='examples'>
