@@ -24,14 +24,14 @@
     }
 
     $: sortIcons = {'none' : {
-        direction: 'n',
-        icon: 'list'
-    }, 'ascending' : {
-        direction: 'w',
-        icon: 'arrow'
-    }, 'descending' : {
         direction: 'e',
-        icon: 'arrow'
+        icon: 'code'
+    }, 'ascending' : {
+        direction: 'n',
+        icon: 'chevron-up'
+    }, 'descending' : {
+        direction: 's',
+        icon: 'chevron-up'
     }}
 
     $: headers.forEach(d => {
@@ -157,8 +157,5 @@ tbody tr:nth-child(2n) {
         background-color: var(--accent-color)
     }
 
-    button {
-        display: flex;
-    }
 
 </style>
