@@ -9,7 +9,7 @@
     export let design = 'inner label'
     export let options = [];
 		export let fontSize = 16;
-	  export let value = 'on';
+	  export let value = options.length ? options[1] : 'on';
 
     let checked = true;
 

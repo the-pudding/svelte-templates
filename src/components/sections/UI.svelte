@@ -99,17 +99,17 @@
         <p class='desc'><code>Inner</code> style option</p>
         <div class='example'>
             <Switch bind:value={switchValue} label="Enable dark mode" design="inner" />
-            <p>Switch is {switchValue}</p>
+            <p>Switch is <span>{switchValue}</span></p>
         </div>
         <p class='desc'><code>Slider</code> style option</p>
         <div class='example'>
             <Switch bind:value={sliderValue} label="Enable dark mode" design="slider" />
-            <p>Switch is {sliderValue}</p>
+            <p>Switch is <span>{sliderValue}</span></p>
         </div>
         <p class='desc'><code>Multi</code> style option</p>
         <div class='example'>
             <Switch bind:value={multiValue} label="Choose a theme" design="multi" options={['light', 'dark']}/>
-            <p>Switch is {multiValue}</p>
+            <p>Switch is <span>{multiValue}</span></p>
         </div>
 
     </div>
