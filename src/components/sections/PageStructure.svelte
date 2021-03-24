@@ -10,7 +10,7 @@
 
 <h2>Page Structure</h2>
 
-<!-- Progress Dots -->
+<!-- Collapsible Sections -->
 
 <DocTemplate componentLabel={'collapsible sections'} propNumber='1' propDesc={propDescriptionsCS} code={CollapsibleSectionExample} name='CollapsibleSection'>
     <p slot='description'>A component to create sections of content that can be hidden (visually and to keyboards/screen readers) and made visible again. This component uses unnamed <a href=https://svelte.dev/tutorial/slots>slots</a>, so any content can be wrapped within it and hidden and made visible.</p>
