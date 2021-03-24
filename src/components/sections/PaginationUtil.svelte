@@ -23,7 +23,7 @@
 </script>
 
 
-<h2>Pagination Utilities</h2>
+<h2>Pagination</h2>
 
 
 <!-- Progress Dots -->
