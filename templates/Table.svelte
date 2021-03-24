@@ -157,4 +157,8 @@ tbody tr:nth-child(2n) {
         background-color: var(--accent-color)
     }
 
+    button {
+        display: flex;
+    }
+
 </style>

@@ -2,7 +2,8 @@
     import DocTemplate from './../DocTemplate.svelte'
     import Table from './../../../templates/Table.svelte'
     import TableExample from '!!raw-loader!./../../examples/TableExample.svelte'
-
+    import CodeBlock from './../../../templates/CodeBlock.svelte'
+    import CodeExample from '!!raw-loader!./../../examples/CodeExample.svelte'
 
     let propDescriptionsTable = [
         ['headers', 'array', 'Array of column header strings (as will be presented on the table)'],
@@ -31,22 +32,43 @@
 	}];
 		
     $: tableData = rawTableData.map(d => ([d.name, d.color, d.element, d.id]))
+
+    let propDescriptionsCode = [
+        ['code', 'string', 'Code to syntax highlight as a string'],
+        ['language', 'string', 'Indicator of programming language (e.g., js or svelte)']]
+
+    let exampleCode = `let x = 25 + y`
 </script>
 
 <h2>Data & Code</h2>
 
 <!-- Sortable Table -->
 
-<DocTemplate componentLabel={'sortable table'} propNumber='1' 
+<DocTemplate componentLabel={'sortable table'} propNumber='6' 
     propDesc={propDescriptionsTable} 
     code={TableExample} name='Table'>
     <p slot='description'>A component to create sortable, semantic HTML tables. </p>
     <a slot='view' href='https://svelte.dev/repl/9f6c397a6dc642c6838ce932bfc01040?version=3.35.0'>on Svelte REPL</a>
+    <p slot='other'>⚠️ This component also requires the <a href=https://github.com/the-pudding/svelte-templates/blob/master/templates/Icon.svelte>Icon.svelte</a> component (not automatically copied from the above buttons).</p>
     <div slot="examples">
         <Table headers={tableHeaders} rows={tableData} rowBorder={true}/>
     </div>
 
     <p slot='a11y'>This component uses semantic HTML tables and <code>button</code> elements to make it as keyboard and screen reader navigable as possible. The sort buttons can be accessed via <code>TAB</code>, and selected via <code>SPACE</code> or <code>ENTER</code>.</p>
+
+</DocTemplate>
+
+<!-- Code Block -->
+
+<DocTemplate componentLabel={'code block'} propNumber='2' 
+    propDesc={propDescriptionsCode} 
+    code={CodeExample} name='CodeBlock'>
+    <p slot='description'>A component to create syntax highlighted code.</p>
+
+    <p slot='other'>⚠️ This component also requires the <a href="https://highlightjs.org/download/">Highlight.js</a>,  <a href="https://www.npmjs.com/package/highlightjs-svelte">Highlight JS Svelte</a>, and <a href="https://www.npmjs.com/package/raw-loader">raw loader</a> packages to be installed to your project. </p>
+    <div slot="examples">
+        <CodeBlock code={exampleCode} language='js'/>
+    </div>
 
 </DocTemplate>
 
