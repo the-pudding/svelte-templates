@@ -1,8 +1,10 @@
 <script>
   import { quadIn } from "svelte/easing";
+	import {onMount} from 'svelte';
 
   export let numberOfElements = 50;
   export let durationInSeconds = 2;
+	export let timeout;
   export let colors = [
     "#fff",
     "#c7ecee",
@@ -16,6 +18,12 @@
     "#4b7bec",
     "#475c83"
   ];
+	
+	let showConfetti = true;
+	
+	 onMount(() => {
+		 if (timeout) setTimeout(() => (showConfetti = false), timeout);
+  });
 
   const pickFrom = arr => arr[Math.round(Math.random() * arr.length)];
   const randomNumber = (min, max) => Math.random() * (max - min) + min;
@@ -34,7 +42,7 @@
     .map((_, i) => [pickFrom(elementOptions), pickFrom(colors), Math.random()]);
 </script>
 
-<svg class="confetti" viewBox="-10 -10 10 10">
+<svg class="confetti" viewBox="-10 -10 10 10" class:visible={showConfetti}>
   {#each allElements as [element, color, scale], i}
     <g style="transform: scale({scale})">
       <g
@@ -57,8 +65,12 @@
     pointer-events: none;
     overflow: visible;
     transform: translate(-50%, -50%);
+		display: none;
   }
-  @keyframes pop {
+	.visible {
+		display: block
+	}
+	@keyframes pop {
     0% {
       transform: rotate(var(--rotation)) scale(1) translate(0em, 0em);
     }

@@ -5,35 +5,48 @@
 
   export let options;
   export let legend;
-  export let value = options[0].name;
+  export let userSelected = options[0].value;
+	export let fontSize = 16;
+	export let flexDirection = 'column'
+	
+	const uniqueID = Math.floor(Math.random() * 100)
 
   const slugify = (str = "") =>
     str.toLowerCase().replace(/ /g, "-").replace(/\./g, "");
 </script>
 
-<fieldset>
-  <legend>{legend}</legend>
-  {#each options as { name, label }}
+<div role="radiogroup" 
+				 class="group-container"
+				 aria-labelledby={`label-${uniqueID}`}
+				 style="font-size:{fontSize}px; flex-direction:{flexDirection}" 
+				 id={`group-${uniqueID}`}>
+        <div class="legend" 
+						 id={`label-${uniqueID}`}>{legend}
+				</div>
+  {#each options as { value, label }}
     <input
       class="sr-only"
       type="radio"
-      id={slugify(name)}
-      bind:group={value}
-      value={slugify(name)} />
-    <label for={slugify(name)}> {label} </label>
+      id={slugify(label)}
+      bind:group={userSelected}
+      value={value} />
+    <label for={slugify(label)}> {label} </label>
   {/each}
-</fieldset>
+</div>
 
 <style>
-  fieldset {
-    max-width: 25%;
-    border-radius: 2px;
-    border: 1px solid var(--gray-darker);
-  }
+			:root {
+		--accent-color: CornflowerBlue;
+		--gray: #ccc;
+	}
+	
+   .group-container {
+      border-radius: 2px;
+      display: flex;
+      flex-direction: row;
+    }
 
-  legend {
-    margin: 0 1em;
-    padding: 0 1em;
+  .legend {
     font-weight: bold;
   }
   label {
@@ -58,7 +71,6 @@
   input[type="radio"] + label {
     display: block;
     position: relative;
-    padding: 0 1em;
     text-align: left;
   }
 
@@ -70,13 +82,13 @@
       width: 1em;
       height: 1em;
       background: transparent;
-      border: 1px solid var(--gray);
+      border: 1px solid var(--gray, #ccc);
       border-radius: 50%;
       top: 0.2em;
   }
 
   input[type="radio"]:checked + label::before {
-    border: 1px solid var(--gray, #ddd);
+    border: 1px solid var(--gray, #ccc);
     border-radius: 50%;
   }
 
@@ -87,9 +99,9 @@
     width: 0.5em;
     height: 0.5em;
     top: 0.45em;
-    left: 1.25em;
-    background: var(--accent-color);
-    border: 1px solid var(--accent-color);
+    left: 0.25em;
+    background: var(--accent-color, #282828);
+    border: 1px solid var(--accent-color, #282828);
     border-radius: 50%;
     transform: scale(0);
   }
@@ -100,16 +112,16 @@
   }
 
   input[type="radio"]:focus + label::before {
-    box-shadow: 0 0 0 1px var(--accent-color);
+    box-shadow: 0 0 0 1px var(--accent-color, #282828);
     border-radius: 50%;
   }  
   
   input[type="radio"]:disabled + label {
-    color: darken(var(--gray), 10);
+    color: darken(var(--gray, #ccc), 10);
   }
 
   input[type="radio"]:disabled + label::before {
-    background: var(--gray);
+    background: var(--gray, #ccc);
   } 
   /* gravy */
 
@@ -131,10 +143,8 @@
   }
 
   input[type="radio"]:focus + label::before {
-    box-shadow: 0 0px 8px var(--accent-color);
+    box-shadow: 0 0px 8px var(--accent-color, #282828);
     border-radius: 50%;
   }
-
-
 
 </style>

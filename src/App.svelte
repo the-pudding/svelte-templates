@@ -3,7 +3,7 @@
 </script>
 
 <main>
-  <h1>Hey friend!</h1>
+  <h1>Hi friend!</h1>
   <p>These templates are yours to grab and modify as you need!</p>
   <p>Just copy the source code & paste into a new .svelte file.</p>
   <p>
@@ -19,7 +19,7 @@
     </li>
   </ul>
 
-  <Templates />
+  <!-- <Templates /> -->
 </main>
 
 <style>

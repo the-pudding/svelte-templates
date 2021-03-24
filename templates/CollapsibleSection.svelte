@@ -9,10 +9,10 @@
 <div class="collapsible">
     <h3>
         <button aria-expanded={expanded} on:click={() => expanded = !expanded}>{headerText}
-            <svg viewBox="0 0 10 10" focusable="false">
-                <rect class="vert" height="8" width="2" y="1" x="4" />
-                <rect height="2" width="8" y="4" x="1" />
-            </svg>
+<svg viewBox="0 0 20 20" fill="none" >
+<path class="vert" d="M10 1V19" stroke="black" stroke-width="2"/>
+<path d="M1 10L19 10" stroke="black" stroke-width="2"/>
+</svg>
         </button>
     </h3>
     
@@ -22,9 +22,28 @@
 </div>
 
 <style>
-    button {
-        all: inherit;
-    }
+  .collapsible {
+    border-bottom: 1px solid var(--gray, #eee);
+  }
+	
+	h3 {
+		margin: 0;
+	}
+	
+  button {
+    background-color: var(--background, #fff);
+    color: var(--gray-darkest, #282828);
+    display: flex;
+		justify-content: space-between;
+    width: 100%;
+		border: none;
+		margin: 0;
+		padding: 1em 0.5em;
+  }
+
+  button[aria-expanded="true"] {
+    border-bottom: 1px solid var(--gray, #eee);
+  }
 
     button[aria-expanded="true"] .vert {
         display: none;
@@ -39,6 +58,7 @@
     }
 
     svg {
-        height: 0.8em;
+        height: 0.7em;
+				width: 0.7em;
     }
 </style>
