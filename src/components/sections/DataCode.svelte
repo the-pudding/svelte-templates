@@ -6,7 +6,10 @@
     import CodeExample from '!!raw-loader!./../../examples/CodeExample.svelte'
     import DataDownload from './../../../templates/DataDownload.svelte'
     import DataDownloadExample from '!!raw-loader!./../../examples/DataDownloadExample.svelte'
-
+    import { onMount } from 'svelte'
+    import Scatterplot from '../../../templates/Scatterplot.svelte';
+    import ScatterplotExample from '!!raw-loader!./../../examples/ScatterplotExample.svelte'
+    
     let propDescriptionsTable = [
         ['headers', 'array', 'Array of column header strings (as will be presented on the table)'],
         ['rows', 'array of arrays', 'Array of data to fill each row in the table'],
@@ -44,6 +47,22 @@
     let propDescriptionsData = [
         ['data', 'array of objects', 'Flat data to be exported to csv'],
         ['title', 'string', 'string to be converted into file name']]
+
+    let propDescriptionsScatter = [
+        ['data', 'array of objects', 'Flat data to be used to create a scatterplot'],
+        ['xAccessor', 'function', 'indicator of which data variable should be used on the x-axis. Defaults to d[0]'],
+        ['yAccessor', 'function', 'indicator of which data variable should be used on the y-axis. Defaults to d[1]'],
+        ['rAccessor', 'function', 'indicator of which data variable should be used for the radius. Defaults to d[2]']
+    ]
+
+    const generateScatterplotData = () =>
+        new Array(100).fill(0).map(_ => [Math.random(), Math.random(), 3]);
+    let scatterplotData = generateScatterplotData();
+
+    const onRegenerateScatterplotData = () => {
+        scatterplotData = generateScatterplotData();
+    };
+    onMount(onRegenerateScatterplotData);
 </script>
 
 <h2>Data & Code</h2>
@@ -93,6 +112,21 @@
     <p slot='a11y'>This component uses a semantic <code>button</code> element to trigger the download to make it as keyboard and screen reader navigable as possible. The button can be accessed via <code>TAB</code>, and selected via <code>SPACE</code> or <code>ENTER</code>.</p>
 
     <p slot='a11y'>To improve accessibility even further, the data should be exported in a format that is human readable (e.g., a value of <code>8743804</code> could be exported as <code>8.7 million</code>). The raw values could be retained in a second column, if preferred.</p>
+
+</DocTemplate>
+
+
+<!-- Scatterplot -->
+
+<DocTemplate componentLabel={'basic scatterplot'} propNumber='4' 
+    propDesc={propDescriptionsScatter} 
+    code={ScatterplotExample} name='Scatterplot'>
+    <p slot='description'>The basics for a scatterplot. This uses svelte <code>spring</code>, which animates the dots on change, but requires a consistent number of items in the <code>data</code> array.</p>
+
+    <div slot="examples">
+        <button on:click={onRegenerateScatterplotData}>Get new data</button>
+        <Scatterplot data={scatterplotData} />
+    </div>
 
 </DocTemplate>
 
