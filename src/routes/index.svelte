@@ -2,6 +2,7 @@
   import Templates from "./../components/Templates.svelte"
   import TemplatesNew from "./../components/TemplatesNew.svelte"
   import CodeBlock from "../../templates/CodeBlock.svelte"
+  import Header from './../components/Header.svelte'
 
   const cssCode = `:root {
     --accent-color: #3E3454;
