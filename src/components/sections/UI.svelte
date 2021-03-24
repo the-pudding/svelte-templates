@@ -8,6 +8,8 @@
     import ToggleExample from '!!raw-loader!./../../examples/SwitchExample.svelte'
     import ButtonSet from './../../../templates/ButtonSet.svelte'
     import SetExample from '!!raw-loader!./../../examples/SetExample.svelte'
+    import Icon from './../../../templates/Icon.svelte'
+    import IconExample from '!!raw-loader!./../../examples/IconExample.svelte'
 
 
     let checkValue;
@@ -58,6 +60,16 @@
     let propDescriptionsSet = [['options', 'array of objects', 'Specifies label and value of each button'],
     [ 'legend', 'string', 'Brief description of the group of buttons'], ['userSelected', 'array', 'Bindable value for accessing selected radio button value'],
     ['fontSize', 'number', 'Size of button text, defaults to 16']]
+
+    let propDescriptionsIcon = [
+    ['name', 'string', 'Icon name as indicated on feathericons.com'],
+    ['direction', 'string', 'The direction of the icon (e.g., n, ne, e, se, s, sw, w, nw)'], 
+    ['strokeWidth', 'number', 'The width, in pixels of the icon stroke'],
+    ['stroke', 'string', 'Color of the icon stroke'],
+    ['width', 'string', 'Icon width with unit (e.g., "1em"). Default to 1em'],
+    ['height', 'string', 'Icon height with unit (e.g., "1em"). Default to 1em'],
+]
+
 </script>
 
 
@@ -148,6 +160,28 @@
 
 </DocTemplate>
 
+<!-- Icon Set -->
+<DocTemplate componentLabel={'icons'} propNumber='6' propDesc={propDescriptionsIcon} code={IconExample} name='Icon'>
+    <p slot='description'>A component to add and resize icons to other elements. All possible icons can be viewed on the <a href="https://feathericons.com/">Feather Icons Site</a>.</p>
+    <p slot='other'>This component requires that you have incorporated <a href="https://www.npmjs.com/package/feather-icons">Feather Icons</a> in your project.</p>
+
+    <p slot='other'>This component is included by default in our <a href="https://github.com/the-pudding/svelte-starter">Pudding Svelte Starter Template</a>. You can find it in <code>src/components/helpers/Icon.svelte</code>.</p>
+
+    <div slot="examples">
+        <div class='example icon-example'>
+            <Icon name='chevron-up' />
+            <Icon name='chevron-down' />
+            <Icon name='info' />
+            <Icon name='alert-triangle' />
+            <Icon name='download' />
+            <Icon name='play' />
+            <Icon name='pause' />
+        </div>
+
+    </div>
+
+</DocTemplate>
+
 <style>
     code {
         font-weight: bold;
@@ -156,6 +190,10 @@
     .example {
         display: flex;
         justify-content: space-between;
+    }
+
+    .icon-example {
+        margin-top: 1rem;
     }
 
     .example  span {

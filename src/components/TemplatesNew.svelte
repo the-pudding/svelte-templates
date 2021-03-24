@@ -3,6 +3,7 @@
     import PaginationUtil from './sections/PaginationUtil.svelte'
     import PageStructure from './sections/PageStructure.svelte'
     import DataCode from './sections/DataCode.svelte'
+    import Decoration from './sections/Decoration.svelte'
    
 </script>
 
@@ -12,6 +13,7 @@
    <PaginationUtil />
    <PageStructure />
    <DataCode />
+   <Decoration />
 </div>
 
 <style>
