@@ -1,11 +1,13 @@
 <script>
     import UI from './sections/UI.svelte'
+    import PaginationUtil from './sections/PaginationUtil.svelte'
    
 </script>
 
 
 <div class='c'>
    <UI /> 
+   <PaginationUtil />
 </div>
 
 <style>
