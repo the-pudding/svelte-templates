@@ -11,7 +11,7 @@
 
     $: sortStatus = [];
     $: sortDirection = 'ascending'
-		$: sortNumber = rows[0].map(d => !isNaN(d))
+	    $: sortNumber = rows[0].map(d => !isNaN(d))
 
     function updateSortStatus(column, index){
         // reset all to "none"
@@ -86,7 +86,7 @@
             <tr>
                 {#each row as column, i}
 									{#if rowHeaders && i === 0}
-										<th scope="row">
+									    <th scope="row">
 											{column}
 										</th>
 									{:else}
