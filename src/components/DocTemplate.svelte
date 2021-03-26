@@ -14,7 +14,7 @@
 
 </script>
 
-<section>
+<section id={name.toLowerCase()}>
     <CustomCollapsible headerText={componentLabel} >
         <div class='container'>
             <div class='description'>
