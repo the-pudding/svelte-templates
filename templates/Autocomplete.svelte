@@ -60,7 +60,6 @@
 	
 	function handleInputFocus(){
 		menuOpen != menuOpen
-		console.log({menuOpen})
 	}
 	
 	function handleOptionSelect(value, label){
@@ -102,8 +101,7 @@
 		}
 
 		else takeoverKeys = false;
-		
-				console.log({takeoverKeys})
+
 
 // prevent page down behavior on arrow down
 				if (takeoverKeys === true) event.preventDefault();

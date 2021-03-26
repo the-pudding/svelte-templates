@@ -6,27 +6,21 @@
 	const data = [{
 		value: 'green',
 		label: 'Bulbasaur',
-		selected: false
 	}, {
 		value: 'red',
 		label: 'Charmander',
-		selected: true
 	}, {
 		value: 'blue',
 		label: 'Squirtle',
-		selected: true
 	}, {
 		value: 'purple',
 		label: 'Ivysaur',
-		selected: false
 	}, {
 		value: 'brown',
 		label: 'Charmeleon',
-		selected: true
 	}, {
 		value: 'yellow',
 		label: 'Wartortle',
-		selected: true
 	}]
 </script>
 
