@@ -3,6 +3,11 @@
   import TemplatesNew from "./../components/TemplatesNew.svelte"
   import CodeBlock from "../../templates/CodeBlock.svelte"
   import Header from './../components/Header.svelte'
+	    import UI from './../components/sections/UI.svelte'
+    import PaginationUtil from './../components/sections/PaginationUtil.svelte'
+    import PageStructure from './../components/sections/PageStructure.svelte'
+    import DataCode from './../components/sections/DataCode.svelte'
+    import Decoration from './../components/sections/Decoration.svelte'
 
   const cssCode = `:root {
     --accent-color: #3E3454;
@@ -29,7 +34,14 @@ If you don't define an <code>--accent-color</code> and <code>--gray</code>, the 
   </p>
 </article>
 
-<TemplatesNew />
+<div class='c'>
+   <UI /> 
+   <PaginationUtil />
+   <PageStructure />
+   <DataCode />
+   <Decoration />
+</div>
+
 <!-- <Templates /> -->
 
 <style>
@@ -49,4 +61,9 @@ If you don't define an <code>--accent-color</code> and <code>--gray</code>, the 
     font-size: 1.5em;
     font-weight: regular;
   }
+
+	    .c {
+        max-width: 700px;
+        margin: 0 auto;
+    }
 </style>

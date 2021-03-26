@@ -5,8 +5,8 @@
     import CopyButtons from './CopyButtons.svelte'
 
     export let componentLabel;
-    export let propNumber;
     export let propDesc;
+		$: propNumber = propDesc.length;
     export let code;
     export let name;
 
@@ -39,7 +39,7 @@
 
             <div class='props'>
                 <h3>Props</h3>
-                <p>This component takes <strong>{propNumber}</strong> props:</p>
+                <p>This component takes <strong>{propNumber}</strong> {propNumber > 1 ? 'props' : 'prop'}:</p>
                 <Table headers={tableHeader} rows={propDesc} rowBorder={true} sort={false}/>
             </div>
 
