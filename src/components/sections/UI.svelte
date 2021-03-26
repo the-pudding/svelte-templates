@@ -10,6 +10,8 @@
     import SetExample from '!!raw-loader!./../../examples/SetExample.svelte'
     import Icon from './../../../templates/Icon.svelte'
     import IconExample from '!!raw-loader!./../../examples/IconExample.svelte'
+		import Autocomplete from './../../../templates/Autocomplete.svelte'
+		import AutocompleteExample from '!!raw-loader!./../../examples/AutocompleteExample.svelte'
 
 
     let checkValue;
@@ -39,6 +41,34 @@
 		label: 'Squirtle',
 	}]
 
+	const acData = [{
+		value: 'green',
+		label: 'Bulbasaur',
+		selected: false
+	}, {
+		value: 'red',
+		label: 'Charmander',
+		selected: true
+	}, {
+		value: 'blue',
+		label: 'Squirtle',
+		selected: true
+	}, {
+		value: 'purple',
+		label: 'Ivysaur',
+		selected: false
+	}, {
+		value: 'brown',
+		label: 'Charmeleon',
+		selected: true
+	}, {
+		value: 'yellow',
+		label: 'Wartortle',
+		selected: true
+	}]
+
+	let acSelected = ''
+
     let switchValue;
 	let sliderValue;
 	let multiValue;
@@ -62,13 +92,21 @@
     ['fontSize', 'number', 'Size of button text, defaults to 16']]
 
     let propDescriptionsIcon = [
-    ['name', 'string', 'Icon name as indicated on feathericons.com'],
-    ['direction', 'string', 'The direction of the icon (e.g., n, ne, e, se, s, sw, w, nw)'], 
-    ['strokeWidth', 'number', 'The width, in pixels of the icon stroke'],
-    ['stroke', 'string', 'Color of the icon stroke'],
-    ['width', 'string', 'Icon width with unit (e.g., "1em"). Default to 1em'],
-    ['height', 'string', 'Icon height with unit (e.g., "1em"). Default to 1em'],
-]
+			['name', 'string', 'Icon name as indicated on feathericons.com'],
+			['direction', 'string', 'The direction of the icon (e.g., n, ne, e, se, s, sw, w, nw)'], 
+			['strokeWidth', 'number', 'The width, in pixels of the icon stroke'],
+			['stroke', 'string', 'Color of the icon stroke'],
+			['width', 'string', 'Icon width with unit (e.g., "1em"). Default to 1em'],
+			['height', 'string', 'Icon height with unit (e.g., "1em"). Default to 1em'],
+		]
+
+		let propDescriptionsAc = [
+			['data', 'array of objects', 'Data to fill autocomplete. Expects both value and label variables'],
+			['name', 'string', 'Label for the autocomplete search box'], 
+			['fontSize', 'number', 'Size of search box and text, defaults to 16'],
+			['selected', 'string', 'Bindable element returning the value of the selected option'],
+			['clearButton', 'boolean', 'Whether to generate a button to clear the input of the autocomplete, defaults to true'],
+		]
 
 </script>
 
@@ -179,6 +217,25 @@
         </div>
 
     </div>
+
+</DocTemplate>
+
+<!-- Autocomplete -->
+<DocTemplate componentLabel={'autocomplete'} propNumber='5' propDesc={propDescriptionsAc} code={AutocompleteExample} name='Autocomplete'>
+    <p slot='description'>A component to add an autocomplete search bar. These can be helpful when there are many options in a <code>select</code> menu, and you want to keep your users from needing to scroll endlessly.</p>
+    <p slot='other'>⚠️ This component also requires the <a href=https://github.com/the-pudding/svelte-templates/blob/master/templates/Icon.svelte>Icon.svelte</a> component (not automatically copied from the above buttons).</p>
+
+    <div slot="examples">
+        <Autocomplete data={acData} name='Select a Pokemon' bind:selected={acSelected} />
+
+				{#if acSelected.length}
+				<p><code>{acSelected}</code> is selected</p>
+				{/if}
+    </div>
+
+		<p slot='bound'>This component exposes the variable <code>selected</code> to the parent component. A string with the selected button value can be accessed in the parent component using <code>bind:selected</code></p>
+
+    <p slot='a11y'>This component is keyboard and screen-reader accessible by default. Users can <code>TAB</code> to select the input element, use their <code>Arrow Keys</code> to move up and down the rendered list of options, and <code>Enter</code> to select one. Pressing the <code>Escape</code> key closes the menu.</p>
 
 </DocTemplate>
 
