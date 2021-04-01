@@ -31,6 +31,7 @@
         class="sr-only"
         type="radio"
         id={`${uniqueID}-${slugify(value)}`}
+				name={`radio-${uniqueID}`}
         bind:group={userSelected}
         value={slugify(value)} />
       <label class='option' for={`${uniqueID}-${slugify(value)}`}> {label} </label>

@@ -62,7 +62,11 @@
 				 id={`group-${uniqueID}`}>
     <div class='legend' id={`label-${uniqueID}`}>{label}</div>
         {#each options as option}
-            <input type="radio" id={`${option}-${uniqueID}`} value={option} bind:group={value}>
+            <input type="radio" 
+						id={`${option}-${uniqueID}`} 
+						name={`radio-${uniqueID}`}
+						value={option} 
+						bind:group={value}>
             <label for={`${option}-${uniqueID}`}>
                 {option}
             </label> 

@@ -28,6 +28,7 @@
       class="sr-only"
       type="radio"
       id={slugify(label)}
+			name={`radio-${uniqueID}`}
       bind:group={userSelected}
       value={value} />
     <label for={slugify(label)}> {label} </label>
